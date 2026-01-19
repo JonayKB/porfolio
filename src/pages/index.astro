@@ -31,6 +31,7 @@ import Education from "../components/Education.astro";
     </main>
 
     <style is:global>
+
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -42,14 +43,9 @@ import Education from "../components/Education.astro";
             text-wrap: balance;
         }
     </style>
-    
 
     <script>
         import { languages, getLang } from "../i18n";
-
-
-        // Ejecutar al cargar la página
-        window.addEventListener("load", handleInitialScroll);
 
         // --- 1. i18n ---
         const lang = getLang();
