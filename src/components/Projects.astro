@@ -66,13 +66,17 @@
                     <span class="text-[10px] uppercase tracking-[0.3em] text-white opacity-0 group-hover:opacity-100 transition-opacity font-bold">
                         Proyecto {i + 1}
                     </span>
-                    <div
-                        class={`w-2 h-2 rounded-full border border-white/50 dot-indicator transition-all duration-500 ${i === 0 ? "bg-white scale-150" : "bg-transparent"}`}
-                    />
+                    <div class="w-6 h-6 flex items-center justify-center">
+                        <div
+                            class={`w-2 h-2 rounded-full border border-white/50 dot-indicator transition-all duration-500 ${i === 0 ? "bg-white scale-150" : "bg-transparent"}`}
+                        />
+                    </div>
                 </button>
             ))
         }
     </div>
+
+
 
     <div
         id="horizontal-track"

@@ -38,6 +38,11 @@ export default {
   exp_years: "+1 Año",
   exp_label: "Experiencia Fullstack",
   explore: "Explorar",
+  nav_education: "Educación",
+  nav_experience: "Experiencia",
+  nav_contact: "Contacto",
+  nav_wakatime: "WakaTime",
+  nav_skills: "Habilidades",
 
   // --- Contacto
   contact_title: "¿Tienes un proyecto en mente?",

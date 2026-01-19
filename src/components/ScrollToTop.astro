@@ -1,0 +1,87 @@
+<button
+    id="btn-scroll-top"
+    aria-label="Volver arriba"
+    class="fixed bottom-8 right-8 z-[100] p-4 bg-white/5 border border-white/10 backdrop-blur-xl rounded-full text-white opacity-0 translate-y-10 pointer-events-none transition-all duration-500 hover:bg-indigo-600 hover:border-indigo-400 group"
+>
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6 group-hover:-translate-y-1 transition-transform duration-300"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M5 15l7-7 7 7"></path>
+    </svg>
+
+    <div
+        class="absolute inset-0 rounded-full bg-indigo-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity"
+    >
+    </div>
+</button>
+
+<script>
+    const btn = document.getElementById("btn-scroll-top");
+    const heroSection = document.getElementById("start");
+
+    if (btn && heroSection) {
+        // Creamos un observador para la sección de inicio
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    // entry.isIntersecting es true cuando estamos en el Hero
+                    if (!entry.isIntersecting) {
+                        // Si NO estamos en el inicio, mostramos el botón
+                        btn.classList.remove(
+                            "opacity-0",
+                            "translate-y-10",
+                            "pointer-events-none",
+                        );
+                        btn.classList.add(
+                            "opacity-100",
+                            "translate-y-0",
+                            "pointer-events-auto",
+                        );
+                    } else {
+                        // Si estamos en el inicio, ocultamos el botón
+                        btn.classList.add(
+                            "opacity-0",
+                            "translate-y-10",
+                            "pointer-events-none",
+                        );
+                        btn.classList.remove(
+                            "opacity-100",
+                            "translate-y-0",
+                            "pointer-events-auto",
+                        );
+                    }
+                });
+            },
+            {
+                // Umbral: cuando menos del 20% del hero es visible, aparece el botón
+                threshold: 0.2,
+            },
+        );
+
+        observer.observe(heroSection);
+
+        // Evento Click
+        btn.addEventListener("click", () => {
+            // Para que funcione con Scroll Snap, lo mejor es ir al ID directamente
+            heroSection.scrollIntoView({ behavior: "smooth" });
+
+            // Limpiamos la URL
+            history.pushState(null, null, window.location.pathname);
+        });
+    }
+</script>
+
+<style>
+    #btn-scroll-top {
+        /* Aseguramos que el botón destaque sobre los gradientes de fondo */
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+</style>
