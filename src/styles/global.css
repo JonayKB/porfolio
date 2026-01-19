@@ -43,3 +43,12 @@ section {
     /* Asegura que la sección ocupe el alto real del viewport visual */
     height: 100dvh;
 }
+
+/* Esto fuerza a los navegadores Chromium a aplicar el recorte de bordes incluso con filtros */
+.group {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    /* Soporte para que el borde redondeado no se rompa al escalar */
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}

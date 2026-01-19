@@ -45,35 +45,6 @@ import Education from "../components/Education.astro";
 
     <script>
         import { languages, getLang } from "../i18n";
-        function lockAndScroll() {
-            const hash = window.location.hash;
-            if (!hash) return;
-
-            const target = document.querySelector(hash);
-            if (target) {
-                // 1. Desactivamos temporalmente el snap para evitar conflictos de "rebote"
-                document.documentElement.style.scrollSnapType = "none";
-
-                // 2. Movemos el scroll a la posición exacta
-                window.scrollTo({
-                    top: target.offsetTop,
-                    behavior: "instant",
-                });
-
-                // 3. Reactivamos el snap en el siguiente frame de renderizado
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(() => {
-                        document.documentElement.style.scrollSnapType =
-                            "y mandatory";
-                    });
-                });
-            }
-        }
-
-        // Ejecutar cuando el DOM esté listo y cuando se carguen todos los recursos (imágenes, etc)
-        window.addEventListener("DOMContentLoaded", lockAndScroll);
-        // El evento 'load' es el más seguro para el cálculo de offsetTop
-        window.addEventListener("load", lockAndScroll);
         // --- 1. i18n ---
         const lang = getLang();
         const t = languages[lang];
