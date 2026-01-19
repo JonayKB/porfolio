@@ -1,0 +1,146 @@
+---
+const WAKA_API_KEY = import.meta.env.WAKA_API_KEY; 
+const encodedKey = btoa(WAKA_API_KEY);
+
+let stats7Days = null;
+let statsAllTime = null;
+
+try {
+  const [res7, resAll] = await Promise.all([
+    fetch("https://wakatime.com/api/v1/users/current/stats/last_7_days", { headers: { Authorization: `Basic ${encodedKey}` } }),
+    fetch("https://wakatime.com/api/v1/users/current/stats/all_time", { headers: { Authorization: `Basic ${encodedKey}` } })
+  ]);
+  
+  const [data7, dataAll] = await Promise.all([res7.json(), resAll.json()]);
+  stats7Days = data7.data;
+  statsAllTime = dataAll.data;
+} catch (e) { console.error(e); }
+---
+
+<section id="wakatime-section" class="snap-start h-screen relative flex items-center bg-[#050505] overflow-hidden">
+  <div class="container mx-auto px-6 md:px-12 relative z-10">
+    <div class="opacity-0 translate-y-10 transition-all duration-1000 ease-out" data-animate>
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <h2 data-i18n="stats_title" class="text-5xl md:text-7xl font-black tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/40">
+            Coding Activity
+          </h2>
+        </div>
+
+        <div class="flex p-1 bg-white/5 border border-white/10 rounded-xl backdrop-blur-md w-fit relative z-20">
+          <button data-i18n="stats_week" id="btn-7" class="relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all bg-white text-black">7 Days</button>
+          <button data-i18n="stats_all_time" id="btn-all" class="relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all text-gray-400 hover:text-white">All Time</button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1">
+        
+        <div id="wrap-7" class="col-start-1 row-start-1 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-500 z-10 opacity-100 translate-x-0">
+          <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl hover:border-indigo-500/50 transition-colors group">
+            <p data-i18n="stats_week" class="text-indigo-400 font-mono text-sm uppercase tracking-widest mb-4">Last 7 Days</p>
+            <h4 class="text-6xl font-black text-white group-hover:scale-105 transition-transform duration-500">
+                {stats7Days?.human_readable_total_including_other_language}
+            </h4>
+            <p data-i18n="stats_desc_week" class="text-gray-400 mt-4 leading-relaxed">Horas detectadas en la última semana.</p>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl md:col-span-2">
+            <p data-i18n="stats_top_languages" class="text-purple-400 font-mono text-sm uppercase tracking-widest mb-6">Top Languages</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+              {stats7Days?.languages.slice(0, 4).map((lang) => (
+                <div>
+                  <div class="flex justify-between mb-2 text-xs uppercase tracking-tighter">
+                    <span class="text-white font-bold">{lang.name}</span>
+                    <span class="text-gray-400">{lang.percent}%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                    <div class="h-full bg-indigo-500" style={`width: ${lang.percent}%`}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div id="wrap-all" class="col-start-1 row-start-1 grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-500 z-0 opacity-0 translate-x-10 pointer-events-none">
+          <div class="bg-white/5 border border-amber-500/30 p-8 rounded-3xl backdrop-blur-xl group">
+            <p data-i18n="stats_all_time" class="text-amber-400 font-mono text-sm uppercase tracking-widest mb-4">Historical Total</p>
+            <h4 class="text-6xl font-black text-white group-hover:scale-105 transition-transform duration-500">
+                {statsAllTime?.human_readable_total_including_other_language}
+            </h4>
+            <p data-i18n="stats_desc_history" class="text-gray-400 mt-4 leading-relaxed">Toda mi carrera profesional en minutos.</p>
+          </div>
+
+          <div class="bg-white/5 border border-white/10 p-8 rounded-3xl backdrop-blur-xl md:col-span-2">
+            <p data-i18n="stats_mastered" class="text-amber-400 font-mono text-sm uppercase tracking-widest mb-6">Mastered Stack</p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
+              {statsAllTime?.languages.slice(0, 4).map((lang) => (
+                <div>
+                  <div class="flex justify-between mb-2 text-xs uppercase tracking-tighter">
+                    <span class="text-white font-bold">{lang.name}</span>
+                    <span class="text-gray-400">{lang.percent}%</span>
+                  </div>
+                  <div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+                    <div class="h-full bg-amber-500 shadow-[0_0_10px_rgba(245,158,11,0.5)]" style={`width: ${lang.percent}%`}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="mt-16 flex items-center justify-between border-t border-white/5 pt-8 text-[10px] text-gray-500 font-mono uppercase tracking-[0.4em]">
+        <div class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 bg-indigo-500 rounded-full"></span>
+            <span data-i18n="stats_engine">WakaTime Engine</span>
+        </div>
+        <div class="flex items-center gap-4 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+            <span class="text-gray-400" data-i18n="stats_status">Status: <span class="text-emerald-400">Online</span></span>
+            <div class="relative flex h-2 w-2">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute -bottom-20 -left-20 w-96 h-96 bg-indigo-600/10 blur-[150px] rounded-full"></div>
+  <div class="absolute -top-20 -right-20 w-96 h-96 bg-purple-600/5 blur-[150px] rounded-full"></div>
+</section>
+
+<script>
+  const b7 = document.getElementById('btn-7');
+  const bAll = document.getElementById('btn-all');
+  const w7 = document.getElementById('wrap-7');
+  const wAll = document.getElementById('wrap-all');
+
+  function toggle(showAll) {
+    if (showAll) {
+      // Botones
+      bAll.className = "relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all bg-white text-black";
+      b7.className = "relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all text-gray-400 hover:text-white";
+      // Wrappers
+      w7.classList.replace('opacity-100', 'opacity-0');
+      w7.classList.add('translate-x-[-20px]', 'pointer-events-none', 'z-0');
+      wAll.classList.replace('opacity-0', 'opacity-100');
+      wAll.classList.remove('translate-x-10', 'pointer-events-none', 'z-0');
+      wAll.classList.add('translate-x-0', 'z-10');
+    } else {
+      b7.className = "relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all bg-white text-black";
+      bAll.className = "relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all text-gray-400 hover:text-white";
+      
+      wAll.classList.replace('opacity-100', 'opacity-0');
+      wAll.classList.add('translate-x-10', 'pointer-events-none', 'z-0');
+      w7.classList.replace('opacity-0', 'opacity-100');
+      w7.classList.remove('translate-x-[-20px]', 'pointer-events-none', 'z-0');
+      w7.classList.add('translate-x-0', 'z-10');
+    }
+  }
+
+  bAll?.addEventListener('click', () => toggle(true));
+  b7?.addEventListener('click', () => toggle(false));
+</script>

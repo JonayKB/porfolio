@@ -1,0 +1,111 @@
+<section class="snap-start h-screen relative flex items-center bg-[#030303] overflow-hidden" id="skills-section">
+    <div id="particles-container" class="absolute inset-0 z-0 pointer-events-none opacity-40"></div>
+    
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 md:px-12 relative z-10">
+        <div class="opacity-0 translate-y-10 transition-all duration-1000 ease-out" data-animate>
+            
+            <h2 data-i18n="skills" class="text-5xl md:text-7xl font-black mb-12 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/30">
+                Habilidades
+            </h2>
+
+            <div class="space-y-10">
+                {
+                    [
+                        { 
+                            label: "skills_frontend", 
+                            items: [
+                                { name: "JavaScript", icon: "javascript" },
+                                { name: "TypeScript", icon: "typescript" },
+                                { name: "React", icon: "react" },
+                                { name: "Astro", icon: "astro" },
+                                { name: "Tailwind", icon: "tailwindcss" }
+                            ],
+                            color: "from-blue-500" 
+                        },
+                        { 
+                            label: "skills_backend", 
+                            items: [
+                                { name: "Node.js", icon: "nodedotjs" },
+                                { name: "MySQL", icon: "mysql" },
+                                { name: "Express", icon: "express" },
+                                { name: "REST APIs", icon: "postman" }
+                            ],
+                            color: "from-emerald-500" 
+                        },
+                        { 
+                            label: "skills_devops", 
+                            items: [
+                                { name: "Docker", icon: "docker" },
+                                { name: "Git", icon: "git" },
+                                { name: "GitHub", icon: "github" },
+                                { name: "Vercel", icon: "vercel" }
+                            ],
+                            color: "from-purple-500" 
+                        }
+                    ].map((category) => (
+                        <div>
+                            <h3 data-i18n={category.label} class="text-xs uppercase tracking-[0.3em] text-indigo-400 font-bold mb-5 ml-1"></h3>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
+                                {category.items.map((skill) => (
+                                    <div class="group relative p-[1px] rounded-xl overflow-hidden transition-all duration-500 hover:scale-105">
+                                        <div class={`absolute inset-0 bg-gradient-to-br ${category.color} to-transparent opacity-10 group-hover:opacity-100 transition-all duration-500`} />
+                                        
+                                        <div class="relative bg-neutral-900/80 backdrop-blur-xl py-5 px-4 rounded-xl h-full flex flex-col items-center justify-center border border-white/5 shadow-2xl">
+                                            <img 
+                                                src={`https://cdn.simpleicons.org/${skill.icon}/white`} 
+                                                alt={skill.name}
+                                                class="w-8 h-8 mb-3 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
+                                            />
+                                            <span class="text-xs md:text-sm font-bold tracking-tight text-gray-400 group-hover:text-white transition-colors duration-300">
+                                                {skill.name}
+                                            </span>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    // LÓGICA DE PARTÍCULAS SUTILES
+    const container = document.getElementById('particles-container');
+    const particleCount = 40;
+
+    if (container) {
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'absolute bg-white rounded-full';
+            
+            // Tamaño aleatorio
+            const size = Math.random() * 2 + 1 + 'px';
+            particle.style.width = size;
+            particle.style.height = size;
+            
+            // Posición aleatoria
+            particle.style.top = Math.random() * 100 + '%';
+            particle.style.left = Math.random() * 100 + '%';
+            
+            // Opacidad aleatoria
+            particle.style.opacity = (Math.random() * 0.5 + 0.2).toString();
+            
+            // Animación de parpadeo suave
+            particle.style.animation = `pulse ${Math.random() * 3 + 2}s infinite ease-in-out`;
+            
+            container.appendChild(particle);
+        }
+    }
+</script>
+
+<style>
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.2; }
+        50% { transform: scale(1.5); opacity: 0.7; }
+    }
+</style>

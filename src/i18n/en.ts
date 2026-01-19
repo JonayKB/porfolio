@@ -1,0 +1,46 @@
+export default {
+  projects: "Projects",
+  projects_desc: "A selection of recent works",
+  // Experience keys
+  exp_title: "Work Experience",
+  exp_company: "Emergency Rescue & Response Corps",
+  exp_role: "Frontend Web Developer",
+  exp_date: "03/17/2025 - 05/16/2025",
+  exp_item1: "Robust Frontend development using React.",
+  exp_item2: "Project organization and task distribution leadership.",
+  exp_item3: "Architecture based on reusable components.",
+  exp_item4: "Collaborative workflow through PRs (Branching & Merging).",
+  exp_item5: "Full deployment of static and dynamic applications.",
+  skills: "Skills",
+  skills_frontend: "Frontend",
+  skills_backend: "Backend & DB",
+  skills_devops: "DevOps & Tools",
+  // --- WakaTime (Stats) ---
+  stats_title: "Coding Activity",
+  stats_week: "Last 7 days",
+  stats_all_time: "All Time",
+  stats_total_week: "Weekly Total",
+  stats_total_history: "Historical Total",
+  stats_desc_week: "Hours detected in the last week.",
+  stats_desc_history: "My entire professional career in minutes.",
+  stats_mastered: "Mastered Stack",
+  stats_status: "Status",
+  stats_engine: "WakaTime Engine",
+  stats_top_languages: "Top Languages",
+
+  // --- Start
+  status_available: "Available for projects",
+  name: "JonayKB",
+  role: "Full Stack Developer specialized in building high-impact digital experiences, robust APIs, and scalable architectures.",
+  btn_projects: "View Projects",
+  exp_years: "+1 Year",
+  exp_label: "Fullstack Experience",
+  explore: "Explore",
+
+  // --- Contact
+  contact_title: "Have a project in mind?",
+  contact_subtitle: "Let's Talk",
+  contact_copy: "Copy email",
+  contact_copied: "Copied!",
+  contact_social: "Social Media",
+}
