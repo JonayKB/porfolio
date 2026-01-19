@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    /* Permite que el scroll sea fluido antes de "encajar" en la sección */
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+    /* Asegura que el snap funcione incluso con inercia */
+    scroll-snap-stop: always;
+}
+
+body {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+}
+
+/* Ocultar scrollbar */
+@layer base {
+
+    /* Ocultar barra en Chrome, Safari y Opera */
+    ::-webkit-scrollbar {
+        display: none;
+        width: 0;
+        height: 0;
+    }
+
+    /* Ocultar barra en Firefox */
+    html {
+        scrollbar-width: none;
+    }
+
+    /* Ocultar barra en IE y Edge antiguo */
+    body {
+        -ms-overflow-style: none;
+    }
+}
+
+section {
+    /* Evita que el contenido se desplace ligeramente a los lados en Windows */
+    overflow-x: hidden;
+    /* Asegura que la sección ocupe el alto real del viewport visual */
+    height: 100dvh;
+}
