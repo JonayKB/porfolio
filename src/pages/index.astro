@@ -7,7 +7,7 @@ import Projects from "../components/Projects.astro";
 import Start from "../components/Start.astro";
 import Wakatime from "../components/Wakatime.astro";
 import Contact from "../components/Contact.astro";
-
+import Education from "../components/Education.astro";
 ---
 
 <Base>
@@ -22,10 +22,13 @@ import Contact from "../components/Contact.astro";
         <Skills />
 
         <Experience />
+
+        <Education />
         
         <Wakatime />
 
         <Contact />
+
     </main>
 
     <style is:global>
@@ -80,6 +83,42 @@ import Contact from "../components/Contact.astro";
                 const speed = Number(el.dataset.speed) || 0.2;
                 el.style.transform = `translateY(${scrollTop * speed}px)`;
             });
+        });
+        // --- LÓGICA DE NAVEGACIÓN Y URL ---
+
+        // 1. Manejar el scroll automático al cargar la página si hay un hash
+        window.addEventListener("load", () => {
+            const hash = window.location.hash;
+            if (hash) {
+                const targetSection = document.querySelector(hash);
+                if (targetSection) {
+                    targetSection.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        });
+
+        // 2. Observer para actualizar la URL mientras scrolleas
+        const observerOptions = {
+            root: null, // usa el viewport
+            threshold: 0.6, // se activa cuando el 60% de la sección es visible
+        };
+
+        const urlObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                // Solo actualizamos si la sección está entrando en vista
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    if (id) {
+                        // Actualiza la URL sin recargar y sin saltos bruscos
+                        history.replaceState(null, null, `#${id}`);
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Aplicar el observer a todas las secciones con ID
+        document.querySelectorAll("section[id]").forEach((section) => {
+            urlObserver.observe(section);
         });
     </script>
 </Base>

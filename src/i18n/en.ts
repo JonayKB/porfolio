@@ -43,4 +43,14 @@ export default {
   contact_copy: "Copy email",
   contact_copied: "Copied!",
   contact_social: "Social Media",
+
+  //- Titulos
+  edu_title: "Education",
+  edu_dam_title: "Multi-platform Application Development",
+  edu_daw_title: "Web Application Development",
+  edu_institution: "IES Telesforo Bravo",
+  edu_location: "Puerto de la Cruz, Spain",
+  edu_current: "Present",
+  edu_dam_desc: "Specialized in robust API creation (Spring/Hibernate), native Android development, and deployment automation.",
+  edu_daw_desc: "Focus on modern web architectures, Nginx server management, and advanced frontend development.",
 }
