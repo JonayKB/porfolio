@@ -42,33 +42,11 @@ import Education from "../components/Education.astro";
             text-wrap: balance;
         }
     </style>
-    <script>
-        const handleReloadScroll = () => {
-            const hash = window.location.hash;
-            if (hash) {
-                // Buscamos el elemento con ese ID (ej: #educacion)
-                const target = document.querySelector(hash);
-                if (target) {
-                    // Bloqueamos momentáneamente el scroll snap para forzar la posición
-                    const container = document.documentElement;
-                    container.style.scrollSnapType = "none";
-
-                    target.scrollIntoView({ behavior: "instant" });
-
-                    // Reactivamos el scroll snap tras un breve delay
-                    setTimeout(() => {
-                        container.style.scrollSnapType = "y mandatory";
-                    }, 50);
-                }
-            }
-        };
-
-        // Se ejecuta al cargar y al cambiar el historial
-        window.addEventListener("load", handleReloadScroll);
-    </script>
+    
 
     <script>
         import { languages, getLang } from "../i18n";
+
 
         // Ejecutar al cargar la página
         window.addEventListener("load", handleInitialScroll);
