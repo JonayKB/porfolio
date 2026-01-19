@@ -31,7 +31,6 @@ import Education from "../components/Education.astro";
     </main>
 
     <style is:global>
-        
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -46,6 +45,24 @@ import Education from "../components/Education.astro";
 
     <script>
         import { languages, getLang } from "../i18n";
+
+        function handleInitialScroll() {
+            // Si la URL contiene un hash (ej: #educacion)
+            if (window.location.hash) {
+                const id = window.location.hash.substring(1); // Quita el #
+                const element = document.getElementById(id);
+
+                if (element) {
+                    // Un pequeño delay asegura que el DOM y las animaciones estén listos
+                    setTimeout(() => {
+                        element.scrollIntoView({ behavior: "smooth" });
+                    }, 100);
+                }
+            }
+        }
+
+        // Ejecutar al cargar la página
+        window.addEventListener("load", handleInitialScroll);
 
         // --- 1. i18n ---
         const lang = getLang();
