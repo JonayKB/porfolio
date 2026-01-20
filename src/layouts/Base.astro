@@ -1,9 +1,14 @@
 ---
 import "../styles/global.css";
+import { getLang } from "../i18n";
+
 const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
+
+const lang = getLang();
+
 ---
 
-<html>
+<html lang={lang}>
     <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />

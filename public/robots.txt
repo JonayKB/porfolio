@@ -1,0 +1,7 @@
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Indica la ubicación de tu Sitemap (Generado por @astrojs/sitemap)
+Sitemap: https://me.jonaykb.com/sitemap-index.xml
