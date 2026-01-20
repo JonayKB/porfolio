@@ -118,5 +118,11 @@ import ScrollToTop from "../components/ScrollToTop.astro";
         document.querySelectorAll("section[id]").forEach((section) => {
             urlObserver.observe(section);
         });
+
+        // -- Navegar a hash
+        console.log(window.location.hash);
+        document
+            .querySelector('section[id="' + window.location.hash + '"]')
+            ?.scrollIntoView({ behavior: "smooth" });
     </script>
 </Base>
