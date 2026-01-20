@@ -15,6 +15,7 @@ export default {
   skills_frontend: "Frontend",
   skills_backend: "Backend & DB",
   skills_devops: "DevOps & Tools",
+
   // --- WakaTime (Stats) ---
   stats_title: "Coding Activity",
   stats_week: "Last 7 days",
@@ -46,7 +47,7 @@ export default {
   contact_title: "Have a project in mind?",
   contact_subtitle: "Let's Talk",
   contact_copy: "Copy email",
-  contact_copied: "Copied!",
+  copied: "Copied!",
   contact_social: "Social Media",
 
   //- Titulos
@@ -59,7 +60,7 @@ export default {
   edu_dam_desc: "Specialized in robust API creation (Spring/Hibernate), native Android development, and deployment automation.",
   edu_daw_desc: "Focus on modern web architectures, Nginx server management, and advanced frontend development.",
 
-    // --- Proyectos
+  // --- Proyectos
   project1_title: "Local",
   project1_subtitle: "ShopSystem",
   project1_description: "System for managing local stores with inventory, sales, and integrated analytics.",

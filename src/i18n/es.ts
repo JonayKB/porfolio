@@ -48,7 +48,7 @@ export default {
   contact_title: "¿Tienes un proyecto en mente?",
   contact_subtitle: "Hablemos",
   contact_copy: "Copiar correo",
-  contact_copied: "¡Copiado!",
+  copied: "¡Copiado!",
   contact_social: "Redes sociales",
 
   // --- Titulos

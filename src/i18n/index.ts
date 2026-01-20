@@ -25,3 +25,9 @@ export function getBrowserLang() {
 export function getLang() {
   return localStorage.getItem(STORAGE_KEY) || getBrowserLang();
 }
+
+export function translate(key: string) {
+  const lang = getLang();
+  console.log(key)
+  return languages[lang][key] || key;
+}
