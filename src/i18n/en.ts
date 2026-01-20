@@ -58,4 +58,21 @@ export default {
   edu_current: "Present",
   edu_dam_desc: "Specialized in robust API creation (Spring/Hibernate), native Android development, and deployment automation.",
   edu_daw_desc: "Focus on modern web architectures, Nginx server management, and advanced frontend development.",
+
+    // --- Proyectos
+  project1_title: "Local",
+  project1_subtitle: "ShopSystem",
+  project1_description: "System for managing local stores with inventory, sales, and integrated analytics.",
+  project1_button: "View Repository",
+
+
+  project2_title: "KB",
+  project2_subtitle: "Discord Bot",
+  project2_description: "Discord bot for managing communities and event confirmations.",
+  project2_button: "View Repository",
+
+  project3_title: "Cuidado",
+  project3_subtitle: "Plantas",
+  project3_description: "Social network in Laravel for sharing plant care.",
+  project3_button: "View Repository"
 }

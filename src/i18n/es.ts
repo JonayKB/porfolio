@@ -60,4 +60,21 @@ export default {
   edu_current: "Actualidad",
   edu_dam_desc: "Especialización en creación de APIs robustas (Spring/Hibernate), desarrollo Android nativo y automatización de despliegues.",
   edu_daw_desc: "Enfoque en arquitecturas web modernas, gestión de servidores con Nginx y desarrollo frontend avanzado.",
+
+  // --- Proyectos
+  project1_title: "Local",
+  project1_subtitle: "ShopSystem",
+  project1_description: "Sistema de gestión para tiendas locales con inventario, ventas y análisis integrado.",
+  project1_button: "Ver Repositorio",
+
+
+  project2_title: "KB",
+  project2_subtitle: "Discord Bot",
+  project2_description: "Bot de Discord para gestionar comunidades y confirmaciones para eventos.",
+  project2_button: "Ver Repositorio",
+
+  project3_title: "Cuidado",
+  project3_subtitle: "Plantas",
+  project3_description: "Red social en Laravel para compartir cuidados de plantas.",
+  project3_button: "Ver Repositorio"
 }
