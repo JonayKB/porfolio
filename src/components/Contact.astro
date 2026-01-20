@@ -149,22 +149,16 @@
 </section>
 
 <script>
-import { translate } from "../i18n";
+    import { translate } from "../i18n";
 
     // Función auxiliar para enviar eventos a GA
-   const trackGAEvent = (eventName, label) => {
-    // Verificamos si gtag existe para evitar errores en la consola
-    if (typeof window.gtag === 'function') {
-        window.gtag('event', eventName, {
-            'event_label': label,
+    const trackGAEvent = (eventName, label) => {
+        window.gtag("event", eventName, {
+            event_label: label,
         });
-    } else {
-        console.log("GA no cargado aún:", eventName, label);
-    }
-};
+    };
 
     // --- Lógica de Copiado (Email y Teléfono) ---
-
 
     const setupCopy = (btnId, textId, gaLabel) => {
         const btn = document.getElementById(btnId);
