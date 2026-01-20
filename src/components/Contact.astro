@@ -153,9 +153,21 @@
 
     // Función auxiliar para enviar eventos a GA
     const trackGAEvent = (eventName, label) => {
-        window.gtag("event", eventName, {
-            event_label: label,
-        });
+        // Comprobamos si existe gtag en window de forma segura
+        if (
+            typeof window !== "undefined" &&
+            typeof window.gtag === "function"
+        ) {
+            window.gtag("event", eventName, {
+                event_category: "Contact",
+                event_label: label,
+            });
+        } else {
+            // Opcional: registrar en consola durante desarrollo para ver que funciona
+            console.warn(
+                `GA no disponible. Evento: ${eventName}, Label: ${label}`,
+            );
+        }
     };
 
     // --- Lógica de Copiado (Email y Teléfono) ---
