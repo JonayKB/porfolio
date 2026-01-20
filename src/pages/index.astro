@@ -120,9 +120,27 @@ import ScrollToTop from "../components/ScrollToTop.astro";
         });
 
         // -- Navegar a hash
-        console.log(window.location.hash);
-        document
-            .querySelector('section[id="' + window.location.hash + '"]')
-            ?.scrollIntoView({ behavior: "instant" });
+        const handleInitialScroll = () => {
+            const hash = window.location.hash;
+            if (!hash) return;
+
+            // Limpiamos el hash para obtener solo el ID (ej: #start -> start)
+            const id = hash.replace("#", "");
+            const target = document.getElementById(id);
+
+            if (target) {
+                // Usamos un pequeño delay (0ms) para que el navegador
+                // termine de calcular el layout antes de mover el scroll
+                setTimeout(() => {
+                    target.scrollIntoView({ behavior: "instant" });
+                }, 50);
+            }
+        };
+
+        // Ejecutar al cargar el DOM
+        window.addEventListener("DOMContentLoaded", handleInitialScroll);
+
+        // Ejecutar cuando TODO (imágenes incluidas) esté cargado (más seguro)
+        window.addEventListener("load", handleInitialScroll);
     </script>
 </Base>
