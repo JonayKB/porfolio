@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
 ---
 
 <html>
@@ -7,6 +8,17 @@ import "../styles/global.css";
         <meta charset="utf-8" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
+        {googleAnalyticsId && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
+    <script is:inline define:vars={{ googleAnalyticsId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', googleAnalyticsId);
+    </script>
+  </>
+)}
         <title>JonayKB's Portfolio</title>
     </head>
     <body>
