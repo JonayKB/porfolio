@@ -1,6 +1,7 @@
 <section
-    class="snap-start h-screen w-screen relative overflow-hidden bg-[#030303]"
+    class="snap-start h-[100dvh] w-full relative overflow-hidden bg-[#030303]"
     id="projects"
+    style="touch-action: pan-y;"
 >
     <div class="absolute inset-0 z-0 pointer-events-none">
         <div
@@ -55,7 +56,7 @@
     </div>
 
     <div
-        class="absolute right-12 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-6"
+        class="absolute right-4 md:right-12 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-6"
     >
         {
             [0, 1, 2].map((i) => (
@@ -63,7 +64,7 @@
                     class="group flex items-center gap-4 transition-all"
                     data-index={i}
                 >
-                    <span class="text-[10px] uppercase tracking-[0.3em] text-white opacity-0 group-hover:opacity-100 transition-opacity font-bold">
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-white opacity-0 md:group-hover:opacity-100 transition-opacity font-bold hidden md:block">
                         Proyecto {i + 1}
                     </span>
                     <div class="w-6 h-6 flex items-center justify-center">
@@ -81,13 +82,11 @@
         class="relative z-10 h-full flex flex-nowrap overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth"
     >
         <article
-            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center project-text"
-            data-index="0"
-            data-target="#bg-project-1"
+            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
         >
-            <div class="max-w-4xl text-center px-10" data-animate-project>
+            <div class="max-w-4xl text-center" data-animate-project>
                 <h3
-                    class="text-7xl md:text-9xl font-black text-white mb-8 tracking-tighter uppercase leading-[0.8]"
+                    class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
                 >
                     Local <br />
                     <span
@@ -97,36 +96,34 @@
                     >
                 </h3>
                 <p
-                    class="text-xl md:text-2xl text-gray-400 max-w-xl mx-auto font-light leading-relaxed"
+                    class="text-base md:text-2xl text-gray-400 max-w-[280px] sm:max-w-md md:max-w-xl mx-auto font-light leading-relaxed px-2 md:px-0"
                     data-i18n="project1_description"
                 >
                     Sistema de gestión para tiendas locales con inventario,
                     ventas y análisis integrado.
                 </p>
-                <div class="mt-12">
+                <div class="mt-8 md:mt-12">
                     <a
                         href="https://github.com/jonaykb/LocalShopSystemV2"
                         target="_blank"
-                        class="px-10 py-4 border border-white/20 bg-white/5 backdrop-blur-md rounded-full hover:bg-white hover:text-black transition-all duration-500 text-sm uppercase tracking-widest font-bold"
+                        class="px-8 py-3 md:px-10 md:py-4 border border-white/20 bg-white/5 backdrop-blur-md rounded-full hover:bg-white hover:text-black transition-all duration-500 text-xs md:text-sm uppercase tracking-widest font-bold inline-block"
                         data-i18n="project1_button"
                     >
                         Ver Repositorio
-                </a>
+                    </a>
                 </div>
             </div>
         </article>
 
         <article
-            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center project-text"
-            data-index="1"
-            data-target="#bg-project-2"
+            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
         >
             <div
-                class="max-w-4xl text-center px-10 opacity-0 translate-y-20 transition-all duration-1000"
+                class="max-w-4xl text-center opacity-0 translate-y-10 md:translate-y-20 transition-all duration-1000"
                 data-animate-project
             >
                 <h3
-                    class="text-7xl md:text-9xl font-black text-white mb-8 tracking-tighter uppercase leading-[0.8]"
+                    class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
                 >
                     KB <br />
                     <span class="text-indigo-400" data-i18n="project2_subtitle"
@@ -135,34 +132,33 @@
                 </h3>
                 <p
                     data-i18n="project2_description"
-                    class="text-xl md:text-2xl text-gray-400 max-w-xl mx-auto font-light"
+                    class="text-base md:text-2xl text-gray-400 max-w-[280px] sm:max-w-md md:max-w-xl mx-auto font-light leading-relaxed px-2 md:px-0"
                 >
                     Bot de Discord para gestionar comunidades y confirmaciones
                     para eventos.
                 </p>
-                <div class="mt-12">
+                <div class="mt-8 md:mt-12">
                     <a
                         href="https://github.com/jonaykb/KB_Discord_Bot"
                         target="_blank"
                         data-i18n="project2_button"
-                        class="px-10 py-4 border border-indigo-500/30 bg-indigo-500/10 backdrop-blur-md rounded-full hover:bg-indigo-500 transition-all duration-500 text-sm uppercase tracking-widest font-bold"
+                        class="px-8 py-3 md:px-10 md:py-4 border border-indigo-500/30 bg-indigo-500/10 backdrop-blur-md rounded-full hover:bg-indigo-500 transition-all duration-500 text-xs md:text-sm uppercase tracking-widest font-bold inline-block"
                     >
                         Ver Repositorio
                     </a>
                 </div>
             </div>
         </article>
+
         <article
-            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center project-text"
-            data-index="2"
-            data-target="#bg-project-3"
+            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
         >
             <div
-                class="max-w-4xl text-center px-10 opacity-0 translate-y-20 transition-all duration-1000"
+                class="max-w-4xl text-center opacity-0 translate-y-10 md:translate-y-20 transition-all duration-1000"
                 data-animate-project
             >
                 <h3
-                    class="text-7xl md:text-9xl font-black text-white mb-8 tracking-tighter uppercase leading-[0.8]"
+                    class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
                 >
                     Cuidado <br />
                     <span class="text-indigo-400" data-i18n="project3_subtitle"
@@ -170,25 +166,35 @@
                     >
                 </h3>
                 <p
-                    class="text-xl md:text-2xl text-gray-400 max-w-xl mx-auto font-light"
+                    class="text-base md:text-2xl text-gray-400 max-w-xl mx-auto font-light px-4 md:px-0"
                     data-i18n="project3_description"
                 >
                     Red social en Laravel para compartir cuidados de plantas.
                 </p>
-                <div class="mt-12">
+                <div class="mt-8 md:mt-12">
                     <a
                         href="https://github.com/jonaykb/CuidadoPlantas-JonayContreras"
                         target="_blank"
                         data-i18n="project3_button"
-                        class="px-10 py-4 border border-indigo-500/30 bg-indigo-500/10 backdrop-blur-md rounded-full hover:bg-indigo-500 transition-all duration-500 text-sm uppercase tracking-widest font-bold"
+                        class="px-8 py-3 md:px-10 md:py-4 border border-indigo-500/30 bg-indigo-500/10 backdrop-blur-md rounded-full hover:bg-indigo-500 transition-all duration-500 text-xs md:text-sm uppercase tracking-widest font-bold inline-block"
                     >
                         Ver Repositorio
-                </a>
+                    </a>
                 </div>
             </div>
         </article>
     </div>
 </section>
+
+<style>
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
 
 <script>
     // --- 5. LÓGICA DE PROYECTOS (HORIZONTAL) ---
@@ -201,6 +207,10 @@
     const ENTRY_THRESHOLD = 600; // MS de espera al entrar
     const SCROLL_COOLDOWN = 500; // MS entre cada slide
     let lastScrollTime = 0;
+
+    // Variables para touch en móvil
+    let touchStartX = 0;
+    let touchStartY = 0;
 
     // Observer para detectar la entrada a la sección
     const entryObserver = new IntersectionObserver(
@@ -292,6 +302,76 @@
             }
         },
         { passive: false },
+    );
+
+    track?.addEventListener(
+        "touchstart",
+        (e) => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+        },
+        { passive: true },
+    );
+
+    track?.addEventListener(
+        "touchmove",
+        (e) => {
+            const touchMoveX = e.touches[0].clientX;
+            const touchMoveY = e.touches[0].clientY;
+
+            const deltaX = touchStartX - touchMoveX;
+            const deltaY = touchStartY - touchMoveY;
+
+            // Si el movimiento es más horizontal que vertical, bloqueamos el scroll nativo
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                if (e.cancelable) e.preventDefault();
+            }
+        },
+        { passive: false },
+    );
+
+    function moveTrack(direction) {
+        const now = Date.now();
+        const canStartNav = now - sectionEntryTime > ENTRY_THRESHOLD;
+        const canMoveAgain = now - lastScrollTime > SCROLL_COOLDOWN;
+
+        if (!isScrollingActive && canStartNav && canMoveAgain) {
+            isScrollingActive = true;
+            lastScrollTime = now;
+
+            track?.scrollBy({
+                left: direction * track.clientWidth,
+                behavior: "smooth",
+            });
+
+            setTimeout(() => {
+                isScrollingActive = false;
+            }, 600);
+        }
+    }
+
+    track?.addEventListener(
+        "touchend",
+        (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            const deltaX = touchStartX - touchEndX;
+            const threshold = 50; // Mínimo de píxeles para considerar swipe
+
+            const isAtStart = track.scrollLeft <= 0;
+            const maxScroll = track.scrollWidth - track.clientWidth;
+            const isAtEnd = track.scrollLeft >= maxScroll - 10;
+
+            if (Math.abs(deltaX) > threshold) {
+                if (deltaX > 0 && !isAtEnd) {
+                    // Swipe a la izquierda (siguiente)
+                    moveTrack(1);
+                } else if (deltaX < 0 && !isAtStart) {
+                    // Swipe a la derecha (anterior)
+                    moveTrack(-1);
+                }
+            }
+        },
+        { passive: true },
     );
 
     // Click en bolitas (Sugerencia: moverlo a un bucle independiente una sola vez)
