@@ -123,6 +123,6 @@ import ScrollToTop from "../components/ScrollToTop.astro";
         console.log(window.location.hash);
         document
             .querySelector('section[id="' + window.location.hash + '"]')
-            ?.scrollIntoView({ behavior: "smooth" });
+            ?.scrollIntoView({ behavior: "instant" });
     </script>
 </Base>
