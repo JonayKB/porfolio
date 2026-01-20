@@ -70,11 +70,19 @@
 
         // Evento Click
         btn.addEventListener("click", () => {
-            // Para que funcione con Scroll Snap, lo mejor es ir al ID directamente
-            heroSection.scrollIntoView({ behavior: "smooth" });
+            const root = document.documentElement;
 
-            // Limpiamos la URL
-            history.pushState(null, null, window.location.pathname);
+            // 1. Desactivamos el Scroll Snap temporalmente
+            root.style.scrollSnapType = "none";
+
+            // 2. Ejecutamos el scroll suave
+            // Usamos la sección Hero como destino
+            heroSection.scrollIntoView({ behavior: "smooth"  });
+            // 4. Esperamos a que termine la animación para reactivar el snap
+            // Unos 600ms suelen ser suficientes para un scroll fluido
+            setTimeout(() => {
+                root.style.scrollSnapType = "y mandatory";
+            }, 1000);
         });
     }
 </script>
