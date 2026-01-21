@@ -56,7 +56,10 @@
                             items: [
                                 { name: "Docker", icon: "docker" },
                                 { name: "Git", icon: "git" },
-                                { name: "GitHub Actions", icon: "githubactions" },
+                                {
+                                    name: "GitHub Actions",
+                                    icon: "githubactions",
+                                },
                                 { name: "Postman", icon: "postman" },
                             ],
                             color: "from-purple-500",
@@ -77,7 +80,6 @@
 
                                         <div class="relative bg-neutral-900/80 backdrop-blur-xl py-2 px-1 md:py-5 md:px-4 rounded-lg md:rounded-xl h-full flex flex-col items-center justify-center border border-white/5 shadow-2xl text-center">
                                             <img
-                                            
                                                 src={`https://cdn.simpleicons.org/${skill.icon}/white`}
                                                 alt={skill.name}
                                                 class="w-5 h-5 md:w-8 md:h-8 mb-1 md:mb-3 opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-500"
@@ -107,19 +109,14 @@
             const particle = document.createElement("div");
             particle.className = "absolute bg-white rounded-full";
 
-            // Tamaño aleatorio
             const size = Math.random() * 2 + 1 + "px";
             particle.style.width = size;
             particle.style.height = size;
 
-            // Posición aleatoria
             particle.style.top = Math.random() * 100 + "%";
             particle.style.left = Math.random() * 100 + "%";
 
-            // Opacidad aleatoria
             particle.style.opacity = (Math.random() * 0.5 + 0.2).toString();
-
-            // Animación de parpadeo suave
             particle.style.animation = `pulse ${Math.random() * 3 + 2}s infinite ease-in-out`;
 
             container.appendChild(particle);

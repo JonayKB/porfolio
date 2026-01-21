@@ -207,22 +207,19 @@
 </style>
 
 <script>
-    // --- 5. LÓGICA DE PROYECTOS (HORIZONTAL) ---
+    // --- 1. LÓGICA DE PROYECTOS (HORIZONTAL) ---
     const track = document.getElementById("horizontal-track");
     const bgs = document.querySelectorAll(".project-bg");
     const projectsSection = document.getElementById("projects-section");
 
     let isScrollingActive = false;
-    let sectionEntryTime = 0; // Marca de tiempo de entrada
-    const ENTRY_THRESHOLD = 600; // MS de espera al entrar
-    const SCROLL_COOLDOWN = 500; // MS entre cada slide
+    let sectionEntryTime = 0;
+    const ENTRY_THRESHOLD = 600;
+    const SCROLL_COOLDOWN = 500;
     let lastScrollTime = 0;
-
-    // Variables para touch en móvil
     let touchStartX = 0;
     let touchStartY = 0;
 
-    // Observer para detectar la entrada a la sección
     const entryObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
@@ -257,7 +254,6 @@
                 dot.classList.remove("bg-white", "scale-150");
                 dot.classList.add("bg-transparent", "scale-100");
             }
-            // Nota: moví el eventListener fuera o asegúrate de que no se duplique
         });
 
         bgs.forEach((bg, i) => {
@@ -282,16 +278,12 @@
             const isAtEnd = track.scrollLeft >= maxScroll - 10;
             const now = Date.now();
 
-            // Verificamos si el scroll debe ser capturado horizontalmente
             const shouldCapture =
                 (e.deltaY > 0 && !isAtEnd) || (e.deltaY < 0 && !isAtStart);
 
             if (shouldCapture) {
                 e.preventDefault();
-
-                // 1. Validar que ha pasado el tiempo desde la entrada (Entry Threshold)
                 const canStartNav = now - sectionEntryTime > ENTRY_THRESHOLD;
-                // 2. Validar que ha pasado el tiempo desde el último movimiento (Cooldown)
                 const canMoveAgain = now - lastScrollTime > SCROLL_COOLDOWN;
 
                 if (!isScrollingActive && canStartNav && canMoveAgain) {
@@ -304,7 +296,6 @@
                         behavior: "smooth",
                     });
 
-                    // Desbloqueamos después de la animación
                     setTimeout(() => {
                         isScrollingActive = false;
                     }, 600);
@@ -332,7 +323,6 @@
             const deltaX = touchStartX - touchMoveX;
             const deltaY = touchStartY - touchMoveY;
 
-            // Si el movimiento es más horizontal que vertical, bloqueamos el scroll nativo
             if (Math.abs(deltaX) > Math.abs(deltaY)) {
                 if (e.cancelable) e.preventDefault();
             }
@@ -340,7 +330,7 @@
         { passive: false },
     );
 
-    function moveTrack(direction) {
+    function moveTrack(direction: number) {
         const now = Date.now();
         const canStartNav = now - sectionEntryTime > ENTRY_THRESHOLD;
         const canMoveAgain = now - lastScrollTime > SCROLL_COOLDOWN;
@@ -365,7 +355,7 @@
         (e) => {
             const touchEndX = e.changedTouches[0].clientX;
             const deltaX = touchStartX - touchEndX;
-            const threshold = 50; // Mínimo de píxeles para considerar swipe
+            const threshold = 50;
 
             const isAtStart = track.scrollLeft <= 0;
             const maxScroll = track.scrollWidth - track.clientWidth;
@@ -373,10 +363,8 @@
 
             if (Math.abs(deltaX) > threshold) {
                 if (deltaX > 0 && !isAtEnd) {
-                    // Swipe a la izquierda (siguiente)
                     moveTrack(1);
                 } else if (deltaX < 0 && !isAtStart) {
-                    // Swipe a la derecha (anterior)
                     moveTrack(-1);
                 }
             }
@@ -384,7 +372,6 @@
         { passive: true },
     );
 
-    // Click en bolitas (Sugerencia: moverlo a un bucle independiente una sola vez)
     document.querySelectorAll(".group[data-index]").forEach((dot, i) => {
         dot.addEventListener("click", () => {
             track?.scrollTo({

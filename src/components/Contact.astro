@@ -156,9 +156,7 @@
 <script>
     import { translate } from "../i18n";
 
-    // Función auxiliar para enviar eventos a GA
-    const trackGAEvent = (eventName, label) => {
-        // Comprobamos si existe gtag en window de forma segura
+    const trackGAEvent = (eventName: string, label: string) => {
         if (
             typeof window !== "undefined" &&
             typeof window.gtag === "function"
@@ -168,7 +166,6 @@
                 event_label: label,
             });
         } else {
-            // Opcional: registrar en consola durante desarrollo para ver que funciona
             console.warn(
                 `GA no disponible. Evento: ${eventName}, Label: ${label}`,
             );
@@ -177,9 +174,8 @@
 
     // --- Lógica de Copiado (Email y Teléfono) ---
 
-    const setupCopy = (btnId, textId, gaLabel) => {
+    const setupCopy = (btnId: string, textId: string, gaLabel: string) => {
         const btn = document.getElementById(btnId);
-        // Usamos una pequeña pausa para asegurar que capturamos el texto bien
         const text = document.getElementById(textId)?.innerText;
 
         btn?.addEventListener("click", () => {
@@ -189,9 +185,6 @@
 
                 const originalContent = btn.innerHTML;
 
-                // 1. Añadimos clases de estado "Copiado"
-                // 'pointer-events-none' evita que el hover siga activo
-                // '!bg-green-600' y '!text-white' fuerzan el color incluso sobre Tailwind hover
                 btn.classList.add(
                     "!bg-green-600",
                     "!text-white",
@@ -200,7 +193,6 @@
                 btn.innerText = translate("copied");
 
                 setTimeout(() => {
-                    // 2. Restauramos el botón
                     btn.innerHTML = originalContent;
                     btn.classList.remove(
                         "!bg-green-600",

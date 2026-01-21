@@ -16,17 +16,11 @@ import ScrollToTop from "../components/ScrollToTop.astro";
         id="scroll-root"
     >
         <Start />
-
         <Projects />
-
         <Skills />
-
         <Experience />
-
         <Education />
-
         <Wakatime />
-
         <Contact />
         <ScrollToTop />
     </main>
@@ -97,29 +91,24 @@ import ScrollToTop from "../components/ScrollToTop.astro";
 
         // 2. Observer para actualizar la URL mientras scrolleas
         const observerOptions = {
-            root: null, // usa el viewport
-            threshold: 0.6, // se activa cuando el 60% de la sección es visible
+            root: null, 
+            threshold: 0.6, 
         };
 
         const urlObserver = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
-                // Solo actualizamos si la sección está entrando en vista
                 if (entry.isIntersecting) {
                     const id = entry.target.id;
                     if (id) {
-                        // Actualiza la URL sin recargar y sin saltos bruscos
                         history.replaceState(null, null, `#${id}`);
                     }
                 }
             });
         }, observerOptions);
 
-        // Aplicar el observer a todas las secciones con ID
         document.querySelectorAll("section[id]").forEach((section) => {
             urlObserver.observe(section);
         });
-
-        // -- Navegar a hash
         document
             .querySelector('section[id="' + window.location.hash + '"]')
             ?.scrollIntoView({ behavior: "instant" });

@@ -3,10 +3,8 @@
 @tailwind utilities;
 
 html {
-    /* Permite que el scroll sea fluido antes de "encajar" en la sección */
     scroll-behavior: smooth;
     overflow-y: scroll;
-    /* Asegura que el snap funcione incluso con inercia */
     scroll-snap-stop: always;
 }
 
@@ -38,17 +36,13 @@ body {
 }
 
 section {
-    /* Evita que el contenido se desplace ligeramente a los lados en Windows */
     overflow-x: hidden;
-    /* Asegura que la sección ocupe el alto real del viewport visual */
     height: 100dvh;
 }
 
-/* Esto fuerza a los navegadores Chromium a aplicar el recorte de bordes incluso con filtros */
 .group {
     -webkit-mask-image: -webkit-radial-gradient(white, black);
     mask-image: radial-gradient(white, black);
-    /* Soporte para que el borde redondeado no se rompa al escalar */
     backface-visibility: hidden;
     transform: translateZ(0);
 }

@@ -2,16 +2,20 @@
 const availableLanguages = ["es", "en"];
 ---
 
-<div class="fixed top-6 right-6 z-[100] flex items-center gap-1 p-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl">
-  {availableLanguages.map(lang => (
-    <button
-      aria-label={`Switch to ${lang} language`}
-      data-lang-btn={lang}
-      class="px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all duration-300 hover:text-white"
-    >
-      {lang}
-    </button>
-  ))}
+<div
+  class="fixed top-6 right-6 z-[100] flex items-center gap-1 p-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-full shadow-2xl"
+>
+  {
+    availableLanguages.map((lang) => (
+      <button
+        aria-label={`Switch to ${lang} language`}
+        data-lang-btn={lang}
+        class="px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all duration-300 hover:text-white"
+      >
+        {lang}
+      </button>
+    ))
+  }
 </div>
 
 <script>
@@ -20,10 +24,9 @@ const availableLanguages = ["es", "en"];
   const buttons = document.querySelectorAll("[data-lang-btn]");
   const currentLang = getLang();
 
-  // Resaltar el idioma activo al cargar
-  buttons.forEach(btn => {
+  buttons.forEach((btn) => {
     const lang = btn.getAttribute("data-lang-btn");
-    
+
     if (lang === currentLang) {
       btn.classList.add("bg-white", "text-black");
     } else {
