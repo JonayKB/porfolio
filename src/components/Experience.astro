@@ -1,9 +1,9 @@
 <section
     id="experience"
-    class="snap-start min-h-[100dvh] h-fit md:h-screen relative flex items-center bg-[#030303] overflow-hidden py-16 md:py-0"
+    class="snap-start min-h-[100dvh] h-fit md:h-screen relative flex items-center bg-[#030303] light:bg-[#f9fafb] overflow-hidden py-16 md:py-0 transition-colors duration-700"
 >
     <div
-        class="absolute left-[10%] top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-white/20 to-transparent pointer-events-none hidden md:block"
+        class="absolute left-[10%] top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-white/20 light:via-black/10 to-transparent pointer-events-none hidden md:block"
     >
     </div>
 
@@ -14,16 +14,16 @@
         >
             <div class="shrink-0 relative group">
                 <span
-                    class="text-[7rem] md:text-[15rem] font-black leading-none tracking-tighter text-transparent select-none transition-all duration-700 group-hover:opacity-30"
-                    style="-webkit-text-stroke: 1px rgba(255,255,255,0.2)"
+                    class="experience-number text-[7rem] md:text-[15rem] font-black leading-none tracking-tighter text-transparent select-none transition-all duration-700 group-hover:opacity-30 light:group-hover:opacity-10"
                 >
                     2025
                 </span>
                 <div class="absolute inset-0 flex items-center justify-center">
                     <span
-                        class="text-indigo-500 font-mono text-lg md:text-2xl rotate-0 md:rotate-90 tracking-[0.3em] md:tracking-widest uppercase mt-4 md:mt-0"
-                        >Malta</span
+                        class="text-indigo-500 light:text-indigo-600 font-mono text-lg md:text-2xl rotate-0 md:rotate-90 tracking-[0.3em] md:tracking-widest uppercase mt-4 md:mt-0"
                     >
+                        Malta
+                    </span>
                 </div>
             </div>
 
@@ -31,13 +31,13 @@
                 <div class="mb-6 flex flex-wrap items-center gap-3 md:gap-4">
                     <span
                         data-i18n="exp_title"
-                        class="px-3 py-1 rounded-full border border-indigo-500/30 bg-indigo-500/10 text-[10px] md:text-xs font-mono text-indigo-300 uppercase tracking-widest"
+                        class="px-3 py-1 rounded-full border border-indigo-500/30 light:border-indigo-200 bg-indigo-500/10 light:bg-indigo-50 text-[10px] md:text-xs font-mono text-indigo-300 light:text-indigo-600 uppercase tracking-widest"
                     >
                         Experiencia Laboral
                     </span>
                     <span
                         data-i18n="exp_date"
-                        class="text-gray-500 font-mono text-[10px] md:text-xs"
+                        class="text-gray-500 light:text-gray-400 font-mono text-[10px] md:text-xs"
                     >
                         17/03 - 16/05
                     </span>
@@ -45,13 +45,13 @@
 
                 <h2
                     data-i18n="exp_company"
-                    class="text-3xl md:text-6xl font-black tracking-tighter text-white mb-2 leading-tight break-words"
+                    class="text-3xl md:text-6xl font-black tracking-tighter text-white light:text-gray-900 mb-2 leading-tight break-words transition-colors"
                 >
                     Emergency Rescue & Response Corps
                 </h2>
                 <h3
                     data-i18n="exp_role"
-                    class="text-lg md:text-2xl text-indigo-400 font-medium mb-6 md:mb-8 uppercase tracking-wide"
+                    class="text-lg md:text-2xl text-indigo-400 light:text-indigo-600 font-medium mb-6 md:mb-8 uppercase tracking-wide transition-colors"
                 >
                     Desarrollador Web Frontend
                 </h3>
@@ -66,10 +66,10 @@
                             "exp_item5",
                         ].map((key) => (
                             <li class="flex items-start gap-3 group">
-                                <span class="mt-2 w-1.5 h-1.5 shrink-0 rounded-full bg-indigo-500 group-hover:scale-150 transition-transform" />
+                                <span class="mt-2 w-1.5 h-1.5 shrink-0 rounded-full bg-indigo-500 light:bg-indigo-600 group-hover:scale-150 transition-transform" />
                                 <p
                                     data-i18n={key}
-                                    class="text-gray-400 group-hover:text-gray-200 transition-colors text-sm md:text-base leading-relaxed tracking-wide"
+                                    class="text-gray-400 light:text-gray-600 group-hover:text-gray-200 light:group-hover:text-black transition-colors text-sm md:text-base leading-relaxed tracking-wide"
                                 />
                             </li>
                         ))
@@ -79,7 +79,7 @@
                 <div class="mt-8 md:mt-10 flex flex-wrap gap-2 md:gap-3">
                     {
                         ["React", "Git Flow", "Deployment"].map((skill) => (
-                            <span class="px-3 py-1.5 md:px-4 md:py-2 bg-white/5 border border-white/10 rounded-lg text-[10px] md:text-xs font-bold text-gray-300 uppercase tracking-tighter hover:bg-white/10 transition-colors cursor-default">
+                            <span class="px-3 py-1.5 md:px-4 md:py-2 bg-white/5 light:bg-black/5 border border-white/10 light:border-black/10 rounded-lg text-[10px] md:text-xs font-bold text-gray-300 light:text-gray-700 uppercase tracking-tighter hover:bg-white/10 light:hover:bg-black/10 transition-colors cursor-default">
                                 {skill}
                             </span>
                         ))
@@ -90,11 +90,22 @@
     </div>
 
     <div
-        class="absolute -bottom-20 -right-20 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/10 blur-[100px] md:blur-[120px] rounded-full pointer-events-none"
+        class="absolute -bottom-20 -right-20 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/10 light:bg-indigo-600/5 blur-[100px] md:blur-[120px] rounded-full pointer-events-none"
     >
     </div>
     <div
-        class="absolute top-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-purple-600/5 blur-[80px] md:blur-[100px] rounded-full pointer-events-none"
+        class="absolute top-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-purple-600/5 light:bg-purple-600/5 blur-[80px] md:blur-[100px] rounded-full pointer-events-none"
     >
     </div>
 </section>
+<style is:global>
+    /* Estilo base (Oscuro) */
+    .experience-number {
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    }
+
+    /* Estilo cuando el HTML tiene la clase .light */
+    .light .experience-number {
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.1) !important;
+    }
+</style>

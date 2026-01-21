@@ -27,6 +27,7 @@ body {
     /* Ocultar barra en Firefox */
     html {
         scrollbar-width: none;
+        
     }
 
     /* Ocultar barra en IE y Edge antiguo */
@@ -46,3 +47,4 @@ section {
     backface-visibility: hidden;
     transform: translateZ(0);
 }
+

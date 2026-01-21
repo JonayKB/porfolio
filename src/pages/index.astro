@@ -8,6 +8,7 @@ import Wakatime from "../components/Wakatime.astro";
 import Contact from "../components/Contact.astro";
 import Education from "../components/Education.astro";
 import ScrollToTop from "../components/ScrollToTop.astro";
+import TopActionsContainer from "../components/TopActionsContainer.astro";
 ---
 
 <Base>
@@ -15,6 +16,7 @@ import ScrollToTop from "../components/ScrollToTop.astro";
         class="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-black text-white"
         id="scroll-root"
     >
+    <TopActionsContainer />
         <Start />
         <Projects />
         <Skills />
