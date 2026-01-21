@@ -4,6 +4,76 @@ import ThemeToggle from './ThemeToggle.astro';
 ---
 
 <div class="fixed top-6 right-6 z-[100] flex items-center gap-3">
+  
+  <div 
+    id="menu-items" 
+    class="flex items-center gap-3 
+           max-md:opacity-0 max-md:-translate-x-4 max-md:pointer-events-none 
+           transition-all duration-500 ease-out"
+  >
     <LanguagePicker />
     <ThemeToggle />
+  </div>
+
+  <button
+    id="menu-toggle"
+    aria-label="Toggle Menu"
+    class="md:hidden flex flex-col justify-center items-center w-12 h-12 bg-white/5 light:bg-black/5 border border-white/10 light:border-black/10 backdrop-blur-xl rounded-full transition-all duration-300 group shrink-0"
+  >
+    <div class="relative w-5 h-4">
+      <span id="line-1" class="absolute block w-5 h-0.5 bg-white light:bg-black rounded-full transition-all duration-300 top-0"></span>
+      <span id="line-2" class="absolute block w-5 h-0.5 bg-white light:bg-black rounded-full transition-all duration-300 top-[7px]"></span>
+      <span id="line-3" class="absolute block w-5 h-0.5 bg-white light:bg-black rounded-full transition-all duration-300 bottom-0"></span>
+    </div>
+  </button>
 </div>
+
+<script>
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuItems = document.getElementById('menu-items');
+  const line1 = document.getElementById('line-1');
+  const line2 = document.getElementById('line-2');
+  const line3 = document.getElementById('line-3');
+  let isOpen = false;
+
+  menuToggle?.addEventListener('click', () => {
+    isOpen = !isOpen;
+
+    if (isOpen) {
+      // Desplegar hacia la izquierda
+      menuItems?.classList.remove('max-md:opacity-0', 'max-md:-translate-x-4', 'max-md:pointer-events-none');
+      
+      // Animación a Cruz
+      line1?.classList.add('rotate-45', 'translate-y-[7px]');
+      line2?.classList.add('opacity-0', 'scale-0');
+      line3?.classList.add('-rotate-45', '-translate-y-[7px]');
+    } else {
+      // Ocultar
+      menuItems?.classList.add('max-md:opacity-0', 'max-md:-translate-x-4', 'max-md:pointer-events-none');
+      
+      // Volver a Hamburguesa
+      line1?.classList.remove('rotate-45', 'translate-y-[7px]');
+      line2?.classList.remove('opacity-0', 'scale-0');
+      line3?.classList.remove('-rotate-45', '-translate-y-[7px]');
+    }
+  });
+
+  // Cerrar al hacer click fuera
+  document.addEventListener('click', (e) => {
+    const target = e.target as Node;
+    if (isOpen && !menuToggle?.contains(target) && !menuItems?.contains(target)) {
+      menuToggle?.click();
+    }
+  });
+</script>
+
+<style>
+  /* En escritorio, los elementos siempre están visibles y a la izquierda */
+  @media (min-width: 768px) {
+    #menu-items {
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+    }
+  }
+</style>
