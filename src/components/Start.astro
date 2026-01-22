@@ -2,17 +2,17 @@
     id="start"
     class="snap-start h-screen relative flex items-center overflow-hidden bg-[#030303] light:bg-[#f9fafb] transition-colors duration-700"
 >
-    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute inset-0 overflow-hidden pointer-events-none theme-perf-target">
         <div
-            class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-indigo-600/20 light:bg-indigo-400/10 blur-[120px] rounded-full"
+            class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-indigo-600/20 light:bg-indigo-400/10 blur-[100px] rounded-full [will-change:transform,opacity]"
         >
         </div>
         <div
-            class="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] bg-purple-600/15 light:bg-purple-400/10 blur-[140px] rounded-full"
+            class="absolute -bottom-[10%] -right-[10%] w-[50%] h-[50%] bg-purple-600/15 light:bg-purple-400/10 blur-[110px] rounded-full [will-change:transform,opacity]"
         >
         </div>
         <div
-            class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 light:opacity-[0.05] brightness-100 contrast-150"
+            class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 light:opacity-[0.05] brightness-100 contrast-150 pointer-events-none"
         >
         </div>
     </div>
@@ -40,8 +40,8 @@
                 <span
                     data-i18n="name"
                     class="block bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/40 light:from-gray-900 light:via-gray-800 light:to-gray-500"
-                ></span>
-                <span class="block text-indigo-500 mt-2">.</span>
+                >JonayKB</span>
+                <span class="hidden md:block text-indigo-500 mt-2">.</span>
             </h1>
 
             <p
@@ -100,16 +100,16 @@
                     id="intro-mouse-img"
                     src="assets/img/profile-picture.webp"
                     alt="Profile Picture"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    class="w-full h-full object-cover transition-transform duration-200 ease-out"
                 />
                 <div
-                    class="absolute inset-0 bg-gradient-to-t from-[#030303]/60 light:from-[#f9fafb]/40 via-transparent to-transparent"
+                    class="absolute inset-0 bg-gradient-to-t from-[#030303]/60 light:from-[#f9fafb]/40 via-transparent to-transparent pointer-events-none"
                 >
                 </div>
             </div>
 
             <div
-                class="absolute -bottom-6 -left-6 px-6 py-4 bg-white/5 light:bg-white border border-white/10 light:border-black/5 backdrop-blur-2xl rounded-2xl -rotate-6 shadow-xl transition-all"
+                class="absolute -bottom-6 -left-6 px-6 py-4 bg-white/5 light:bg-white border border-white/10 light:border-black/5 backdrop-blur-2xl rounded-2xl -rotate-6 shadow-xl transition-all hidden md:block"
             >
                 <p
                     data-i18n="exp_years"
@@ -141,45 +141,17 @@
         >
     </div>
 </section>
+
 <style>
     @keyframes scroll-line {
-        0% {
-            transform: scaleY(0);
-            transform-origin: top;
-            opacity: 0;
-        }
-        50% {
-            transform: scaleY(1);
-            transform-origin: top;
-            opacity: 1;
-        }
-        51% {
-            transform: scaleY(1);
-            transform-origin: bottom;
-            opacity: 1;
-        }
-        100% {
-            transform: scaleY(0);
-            transform-origin: bottom;
-            opacity: 0;
-        }
+        0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
+        50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+        51% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
+        100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
     }
+    
     .animate-scroll-line {
         animation: scroll-line 2.5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
-    }
-
-    #intro-mouse-img {
-        will-change: transform;
+        will-change: transform; /* Optimización para GPU */
     }
 </style>
-<script>
-    // --- Parallax del Mouse (Foto Intro) ---
-    const mouseImg = document.getElementById("intro-mouse-img");
-    window.addEventListener("mousemove", (e) => {
-        const x = (window.innerWidth / 2 - e.clientX) / 45;
-        const y = (window.innerHeight / 2 - e.clientY) / 45;
-        if (mouseImg) {
-            mouseImg.style.transform = `translate3d(${x}px, ${y}px, 0) scale(1.05)`;
-        }
-    });
-</script>
