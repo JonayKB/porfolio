@@ -30,12 +30,15 @@ export default {
   stats_all_time: "All Time",
   stats_total_week: "Weekly Total",
   stats_total_history: "Historical Total",
-  stats_desc_week: "Hours detected in the last week.",
-  stats_desc_history: "My entire professional career in minutes.",
+  stats_week_desc: "Hours detected in the last week.",
+  stats_history_desc: "My entire professional career in minutes.",
+  stats_all_time_desc: "All time coding activity.",
   stats_mastered: "Mastered Stack",
   stats_status: "Status",
   stats_engine: "WakaTime Engine",
   stats_top_languages: "Top Languages",
+  stats_all_time_button: "All Time",
+  stats_week_button: "7 Days",
 
   // --- Start
   status_available: "Available for projects",

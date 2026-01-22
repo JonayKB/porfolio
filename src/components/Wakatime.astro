@@ -50,12 +50,14 @@ try {
           <button
             aria-label="Show last 7 days coding activity"
             id="btn-7"
+            data-i18n="stats_week_button"
             class="relative z-10 px-3 md:px-4 py-2 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all bg-white light:bg-gray-900 text-black light:text-white"
             >7 Days</button
           >
           <button
             aria-label="Show all time coding activity"
             id="btn-all"
+            data-i18n="stats_all_time_button"
             class="relative z-10 px-3 md:px-4 py-2 rounded-lg text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black"
             >All Time</button
           >
@@ -82,6 +84,7 @@ try {
               {stats7Days?.human_readable_total_including_other_language}
             </h4>
             <p
+              data-i18n="stats_week_desc"
               class="text-gray-500 light:text-gray-500 text-xs md:text-sm mt-3 md:mt-4 leading-relaxed line-clamp-2 md:line-clamp-none"
             >
               Horas detectadas en la última semana.
@@ -92,6 +95,7 @@ try {
             class="bg-white/5 light:bg-white border border-white/10 light:border-black/5 p-5 md:p-8 rounded-2xl md:rounded-3xl backdrop-blur-xl md:col-span-2 light:shadow-xl light:shadow-black/5"
           >
             <p
+              data-i18n="stats_top_languages"
               class="text-purple-400 light:text-purple-600 font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-6"
             >
               Top Languages
@@ -131,6 +135,7 @@ try {
             class="bg-white/5 light:bg-white border border-amber-500/30 light:border-amber-200 p-5 md:p-8 rounded-2xl md:rounded-3xl backdrop-blur-xl light:shadow-xl light:shadow-amber-500/5 group"
           >
             <p
+              data-i18n="stats_all_time"
               class="text-amber-400 light:text-amber-600 font-mono text-[10px] md:text-sm uppercase tracking-widest mb-2 md:mb-4"
             >
               Historical Total
@@ -141,6 +146,7 @@ try {
               {statsAllTime?.human_readable_total_including_other_language}
             </h4>
             <p
+              data-i18n="stats_all_time_desc"
               class="text-gray-500 light:text-gray-500 text-xs md:text-sm mt-3 md:mt-4 leading-relaxed"
             >
               Toda mi carrera profesional en minutos.
@@ -151,6 +157,7 @@ try {
             class="bg-white/5 light:bg-white border border-white/10 light:border-black/5 p-5 md:p-8 rounded-2xl md:rounded-3xl backdrop-blur-xl md:col-span-2 light:shadow-xl light:shadow-black/5"
           >
             <p
+              data-i18n="stats_mastered"
               class="text-amber-400 light:text-amber-600 font-mono text-[10px] md:text-sm uppercase tracking-widest mb-4 md:mb-6"
             >
               Mastered Stack

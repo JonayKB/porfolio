@@ -25,15 +25,17 @@ export default {
   // --- WakaTime (Estadísticas) ---
   stats_title: "Actividad de Código",
   stats_week: "Últimos 7 días",
-  stats_all_time: "Tiempo Histórico",
+  stats_all_time: "Tiempo Total",
   stats_total_week: "Total Semanal",
   stats_total_history: "Total Histórico",
-  stats_desc_week: "Horas detectadas en la última semana.",
-  stats_desc_history: "Toda mi carrera profesional en minutos.",
+  stats_week_desc: "Horas detectadas en la última semana.",
+  stats_all_time_desc: "Toda mi carrera profesional en minutos.",
   stats_mastered: "Stack Dominado",
   stats_status: "Estado",
   stats_engine: "Motor de WakaTime",
   stats_top_languages: "Principales Lenguajes",
+  stats_all_time_button: "Tiempo Total",
+  stats_week_button: "7 Días",
 
   // --- Start
   status_available: "Disponible para proyectos",
