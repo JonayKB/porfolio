@@ -2,7 +2,9 @@
     id="start"
     class="snap-start h-screen relative flex items-center overflow-hidden bg-[#030303] light:bg-[#f9fafb] transition-colors duration-700"
 >
-    <div class="absolute inset-0 overflow-hidden pointer-events-none theme-perf-target">
+    <div
+        class="absolute inset-0 overflow-hidden pointer-events-none theme-perf-target"
+    >
         <div
             class="absolute -top-[10%] -left-[10%] w-[40%] h-[40%] bg-indigo-600/20 light:bg-indigo-400/10 blur-[100px] rounded-full [will-change:transform,opacity]"
         >
@@ -40,7 +42,8 @@
                 <span
                     data-i18n="name"
                     class="block bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/40 light:from-gray-900 light:via-gray-800 light:to-gray-500"
-                >JonayKB</span>
+                    >JonayKB</span
+                >
                 <span class="hidden md:block text-indigo-500 mt-2">.</span>
             </h1>
 
@@ -54,33 +57,73 @@
                 <a
                     data-i18n="btn_projects"
                     href="#projects"
-                    class="px-8 py-4 bg-white text-black light:bg-gray-900 light:text-white font-bold rounded-full hover:bg-indigo-500 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-xl light:shadow-indigo-500/10 light:hover:bg-indigo-800 "
+                    class="px-8 py-4 bg-white text-black light:bg-gray-900 light:text-white font-bold rounded-full hover:bg-indigo-500 hover:text-white transition-all duration-300 transform hover:scale-105 shadow-xl light:shadow-indigo-500/10 light:hover:bg-indigo-800"
                 >
                     Ver Proyectos
                 </a>
 
-                <nav
-                    class="hidden sm:flex gap-4 border-l border-white/10 light:border-black/10 pl-6"
-                >
-                    <a
-                        href="#skills"
-                        data-i18n="nav_skills"
-                        class="text-xs uppercase tracking-widest text-gray-500 light:text-gray-400 hover:text-indigo-400 light:hover:text-indigo-600 transition-colors"
-                        >Habilidades</a
+                <div class="relative inline-block sm:flex sm:items-center">
+                    <button
+                        id="nav-menu-toggle"
+                        class="flex sm:hidden items-center gap-2 px-4 py-2 bg-white/5 light:bg-black/5 border border-white/10 light:border-black/5 rounded-xl z-50 transition-all active:scale-95"
+                        aria-label="Expandir menú"
                     >
-                    <a
-                        href="#experience"
-                        data-i18n="nav_experience"
-                        class="text-xs uppercase tracking-widest text-gray-500 light:text-gray-400 hover:text-indigo-400 light:hover:text-indigo-600 transition-colors"
-                        >Experiencia</a
+                        <span
+                            data-i18n="menu_label"
+                            class="text-[10px] uppercase tracking-widest font-bold text-gray-400"
+                            >Menú</span
+                        >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-4 h-4 text-indigo-500 transition-transform duration-300 icon-arrow"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="m6 9 6 6 6-6"></path>
+                        </svg>
+                    </button>
+
+                    <nav
+                        id="nav-menu"
+                        class="absolute top-full left-0 mt-2 w-48 py-2 bg-[#0d0d0d] light:bg-white border border-white/10 light:border-black/10 rounded-2xl shadow-2xl opacity-0 scale-95 pointer-events-none transition-all duration-300 z-40
+               sm:static sm:opacity-100 sm:scale-100 sm:pointer-events-auto sm:flex sm:flex-row sm:w-auto sm:bg-transparent sm:border-none sm:shadow-none sm:mt-0 sm:gap-4 sm:border-l sm:border-white/10 sm:light:border-black/10 sm:pl-6"
                     >
-                    <a
-                        href="#contact"
-                        data-i18n="nav_contact"
-                        class="text-xs uppercase tracking-widest text-gray-500 light:text-gray-400 hover:text-indigo-400 light:hover:text-indigo-600 transition-colors"
-                        >Contacto</a
-                    >
-                </nav>
+                        <a
+                            href="#skills"
+                            data-i18n="menu_skills"
+                            class="nav-link block px-4 py-3 sm:py-0 text-sm sm:text-xs uppercase tracking-widest text-gray-400 hover:text-indigo-400 transition-colors"
+                            >Habilidades</a
+                        >
+                        <a
+                            href="#experience"
+                            data-i18n="menu_experience"
+                            class="nav-link block px-4 py-3 sm:py-0 text-sm sm:text-xs uppercase tracking-widest text-gray-400 hover:text-indigo-400 transition-colors"
+                            >Experiencia</a
+                        >
+                        <a
+                            href="#education"
+                            data-i18n="menu_education"
+                            class="nav-link block px-4 py-3 sm:py-0 text-sm sm:text-xs uppercase tracking-widest text-gray-400 hover:text-indigo-400 transition-colors"
+                            >Educación</a
+                        >
+                        <a
+                            href="#wakatime"
+                            data-i18n="menu_wakatime"
+                            class="nav-link block px-4 py-3 sm:py-0 text-sm sm:text-xs uppercase tracking-widest text-gray-400 hover:text-indigo-400 transition-colors"
+                            >WakaTime</a
+                        >
+                        <a
+                            href="#contact"
+                            data-i18n="menu_contact"
+                            class="nav-link block px-4 py-3 sm:py-0 text-sm sm:text-xs uppercase tracking-widest text-gray-400 hover:text-indigo-400 transition-colors"
+                            >Contacto</a
+                        >
+                    </nav>
+                </div>
             </div>
         </div>
 
@@ -144,14 +187,88 @@
 
 <style>
     @keyframes scroll-line {
-        0% { transform: scaleY(0); transform-origin: top; opacity: 0; }
-        50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
-        51% { transform: scaleY(1); transform-origin: bottom; opacity: 1; }
-        100% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+        0% {
+            transform: scaleY(0);
+            transform-origin: top;
+            opacity: 0;
+        }
+        50% {
+            transform: scaleY(1);
+            transform-origin: top;
+            opacity: 1;
+        }
+        51% {
+            transform: scaleY(1);
+            transform-origin: bottom;
+            opacity: 1;
+        }
+        100% {
+            transform: scaleY(0);
+            transform-origin: bottom;
+            opacity: 0;
+        }
     }
-    
+
     .animate-scroll-line {
         animation: scroll-line 2.5s cubic-bezier(0.7, 0, 0.3, 1) infinite;
         will-change: transform; /* Optimización para GPU */
     }
+
+    /* Estado abierto del Dropdown en móvil */
+    #nav-menu.is-open {
+        opacity: 1;
+        scale: 1;
+        transform: translateY(4px);
+        pointer-events: auto;
+    }
+
+    /* Rotación de la flecha */
+    .nav-menu-active .icon-arrow {
+        transform: rotate(180deg);
+    }
+
+    /* Ajuste para que los links no se vean pegados en móvil */
+    @media (max-width: 639px) {
+        .nav-link {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .nav-link:last-child {
+            border-bottom: none;
+        }
+    }
 </style>
+
+<script is:inline>
+    const setupDropdown = () => {
+        const toggle = document.getElementById('nav-menu-toggle');
+        const menu = document.getElementById('nav-menu');
+        const links = document.querySelectorAll('.nav-link');
+
+        if (!toggle || !menu) return;
+
+        toggle.onclick = (e) => {
+            e.stopPropagation();
+            const isOpen = menu.classList.toggle('is-open');
+            toggle.classList.toggle('nav-menu-active');
+        };
+
+        // Cerrar al hacer click en un link
+        links.forEach(link => {
+            link.onclick = () => {
+                menu.classList.remove('is-open');
+                toggle.classList.remove('nav-menu-active');
+            };
+        });
+
+        // Cerrar si haces click fuera del menú
+        document.addEventListener('click', (e) => {
+            if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+                menu.classList.remove('is-open');
+                toggle.classList.remove('menu-active');
+            }
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', setupDropdown);
+    document.addEventListener('astro:page-load', setupDropdown);
+</script>
