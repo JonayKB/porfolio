@@ -16,6 +16,11 @@ export default {
   skills_frontend: "Frontend",
   skills_backend: "Backend & DB",
   skills_devops: "DevOps & Tools",
+  master: "Master",
+  expert: "Experto",
+  advanced: "Avanzado",
+  intermediate: "Intermedio",
+  junior: "Junior",
 
   // --- WakaTime (Estadísticas) ---
   stats_title: "Actividad de Código",

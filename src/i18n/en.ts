@@ -11,10 +11,18 @@ export default {
   exp_item3: "Architecture based on reusable components.",
   exp_item4: "Collaborative workflow through PRs (Branching & Merging).",
   exp_item5: "Full deployment of static and dynamic applications.",
+
+  // --- Skills
   skills: "Skills",
   skills_frontend: "Frontend",
   skills_backend: "Backend & DB",
   skills_devops: "DevOps & Tools",
+  master: "Master",
+  expert: "Expert",
+  advanced: "Advanced",
+  intermediate: "Intermediate",
+  junior: "Junior",
+
 
   // --- WakaTime (Stats) ---
   stats_title: "Coding Activity",
@@ -75,5 +83,7 @@ export default {
   project3_title: "Cuidado",
   project3_subtitle: "Plantas",
   project3_description: "Social network in Laravel for sharing plant care.",
-  project3_button: "View Repository"
+  project3_button: "View Repository",
+
+
 }

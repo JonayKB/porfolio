@@ -1,3 +1,13 @@
+---
+enum Level {
+    Junior = "junior",
+    Intermediate = "intermediate",
+    Advanced = "advanced",
+    Expert = "expert",
+    Master = "master",
+}
+---
+
 <section
     class="snap-start h-[100dvh] relative flex items-center bg-[#030303] light:bg-[#f9fafb] overflow-hidden transition-colors duration-700"
     id="skills"
@@ -14,9 +24,12 @@
     </div>
 
     <div class="container mx-auto px-6 md:px-12 relative z-10 py-4 md:py-0">
-        <div class="opacity-0 translate-y-10 transition-all duration-1000 ease-out" data-animate>
-            <h2 
-                data-i18n="skills" 
+        <div
+            class="opacity-0 translate-y-10 transition-all duration-1000 ease-out"
+            data-animate
+        >
+            <h2
+                data-i18n="skills"
                 class="text-4xl md:text-7xl font-black mb-6 md:mb-12 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/30 light:from-gray-900 light:to-gray-400 transition-colors duration-700"
             >
                 Habilidades
@@ -28,60 +41,139 @@
                         {
                             label: "skills_frontend",
                             items: [
-                                { name: "JavaScript", icon: "javascript", percent: 90, level: "Expert" },
-                                { name: "TypeScript", icon: "typescript", percent: 85, level: "Expert" },
-                                { name: "React", icon: "react", percent: 90, level: "Advanced" },
-                                { name: "Tailwind", icon: "tailwindcss", percent: 80, level: "Advanced" },
-                                { name: "Bootstrap", icon: "bootstrap", percent: 60, level: "Intermediate" },
-                                { name: "Angular", icon: "angular", percent: 30, level: "Junior" },
+                                {
+                                    name: "JavaScript",
+                                    icon: "javascript",
+                                    percent: 90,
+                                    level: Level.Expert,
+                                },
+                                {
+                                    name: "TypeScript",
+                                    icon: "typescript",
+                                    percent: 85,
+                                    level: Level.Expert,
+                                },
+                                {
+                                    name: "React",
+                                    icon: "react",
+                                    percent: 90,
+                                    level: Level.Advanced,
+                                },
+                                {
+                                    name: "Tailwind",
+                                    icon: "tailwindcss",
+                                    percent: 80,
+                                    level: Level.Advanced,
+                                },
+                                {
+                                    name: "Bootstrap",
+                                    icon: "bootstrap",
+                                    percent: 60,
+                                    level: Level.Intermediate,
+                                },
+                                {
+                                    name: "Angular",
+                                    icon: "angular",
+                                    percent: 30,
+                                    level: Level.Junior,
+                                },
                             ],
                             color: "from-blue-500",
                         },
                         {
                             label: "skills_backend",
                             items: [
-                                { name: "Node.js", icon: "nodedotjs", percent: 80, level: "Advanced" },
-                                { name: "MySQL", icon: "mysql", percent: 90, level: "Expert" },
-                                { name: "Django", icon: "django", percent: 80, level: "Advanced" },
-                                { name: "GraphQL", icon: "graphql", percent: 90, level: "Advanced" },
-                                { name: "Spring", icon: "spring", percent: 95, level: "Expert" },
+                                {
+                                    name: "Node.js",
+                                    icon: "nodedotjs",
+                                    percent: 80,
+                                    level: Level.Advanced,
+                                },
+                                {
+                                    name: "MySQL",
+                                    icon: "mysql",
+                                    percent: 90,
+                                    level: Level.Expert,
+                                },
+                                {
+                                    name: "Django",
+                                    icon: "django",
+                                    percent: 80,
+                                    level: Level.Advanced,
+                                },
+                                {
+                                    name: "GraphQL",
+                                    icon: "graphql",
+                                    percent: 90,
+                                    level: Level.Advanced,
+                                },
+                                {
+                                    name: "Spring",
+                                    icon: "spring",
+                                    percent: 95,
+                                    level: Level.Expert,
+                                },
                             ],
                             color: "from-emerald-500",
                         },
                         {
                             label: "skills_devops",
                             items: [
-                                { name: "Docker", icon: "docker", percent: 95, level: "Expert" },
-                                { name: "Git", icon: "git", percent: 90, level: "Expert" },
-                                { name: "GitHub Actions", icon: "githubactions", percent: 90, level: "Expert" },
-                                { name: "Postman", icon: "postman", percent: 80, level: "Advanced" },
+                                {
+                                    name: "Docker",
+                                    icon: "docker",
+                                    percent: 95,
+                                    level: Level.Expert,
+                                },
+                                {
+                                    name: "Git",
+                                    icon: "git",
+                                    percent: 90,
+                                    level: Level.Expert,
+                                },
+                                {
+                                    name: "GitHub Actions",
+                                    icon: "githubactions",
+                                    percent: 90,
+                                    level: Level.Expert,
+                                },
+                                {
+                                    name: "Postman",
+                                    icon: "postman",
+                                    percent: 80,
+                                    level: Level.Advanced,
+                                },
                             ],
                             color: "from-purple-500",
                         },
                     ].map((category) => (
                         <div>
-                            <h3 
-                                data-i18n={category.label} 
-                                class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-indigo-400 light:text-indigo-600 font-bold mb-3 md:mb-5 ml-1 transition-colors duration-700" 
+                            <h3
+                                data-i18n={category.label}
+                                class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-indigo-400 light:text-indigo-600 font-bold mb-3 md:mb-5 ml-1 transition-colors duration-700"
                             />
 
                             <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-4">
                                 {category.items.map((skill) => (
-                                    <div 
+                                    <div
                                         class="group relative p-[1px] rounded-lg md:rounded-xl overflow-hidden transition-all duration-700 hover:scale-105"
                                         style={`--skill-percent: ${skill.percent}%;`}
                                     >
-                                        <div class={`absolute inset-0 bg-gradient-to-br ${category.color} to-transparent opacity-10 light:opacity-20 group-hover:opacity-100 transition-all duration-700`} />
+                                        <div
+                                            class={`absolute inset-0 bg-gradient-to-br ${category.color} to-transparent opacity-10 light:opacity-20 group-hover:opacity-100 transition-all duration-700`}
+                                        />
 
                                         <div class="relative bg-neutral-900/90 light:bg-white/90 backdrop-blur-xl py-3 px-1 md:py-6 md:px-4 rounded-lg md:rounded-xl h-full flex flex-col items-center justify-center border border-white/5 light:border-black/5 shadow-2xl text-center transition-all duration-700">
-                                            
                                             <img
                                                 src={`https://cdn.simpleicons.org/${skill.icon}/white`}
                                                 alt={skill.name}
                                                 class="w-5 h-5 md:w-8 md:h-8 mb-1 md:mb-3 opacity-50 light:opacity-80 light:invert group-hover:opacity-0 group-hover:scale-50 transition-all duration-500"
                                             />
 
-                                            <span class="absolute top-3 md:top-6 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 text-indigo-400 light:text-indigo-600 font-mono text-[8px] md:text-[10px] uppercase tracking-tighter">
+                                            <span
+                                                data-i18n={skill.level}
+                                                class="absolute top-3 md:top-6 opacity-0 scale-50 group-hover:opacity-100 group-hover:scale-100 transition-all duration-500 text-indigo-400 light:text-indigo-600 font-mono text-[8px] md:text-[10px] uppercase tracking-tighter"
+                                            >
                                                 {skill.level}
                                             </span>
 
@@ -90,7 +182,7 @@
                                             </span>
 
                                             <div class="w-12 md:w-20 h-[2px] bg-white/10 light:bg-black/10 rounded-full overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-                                                <div 
+                                                <div
                                                     class={`h-full bg-gradient-to-r ${category.color} to-white light:to-indigo-500 transition-all duration-1000 ease-out w-0 group-hover:w-[var(--skill-percent)]`}
                                                 />
                                             </div>
@@ -108,8 +200,15 @@
 
 <style>
     @keyframes pulse {
-        0%, 100% { transform: scale(1); opacity: 0.2; }
-        50% { transform: scale(1.5); opacity: 0.7; }
+        0%,
+        100% {
+            transform: scale(1);
+            opacity: 0.2;
+        }
+        50% {
+            transform: scale(1.5);
+            opacity: 0.7;
+        }
     }
 </style>
 
@@ -120,10 +219,11 @@
 
     if (container) {
         // Limpiar para evitar duplicados en re-renders de desarrollo
-        container.innerHTML = ''; 
+        container.innerHTML = "";
         for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement("div");
-            particle.className = "absolute bg-white light:bg-gray-400 rounded-full transition-colors duration-700";
+            particle.className =
+                "absolute bg-white light:bg-gray-400 rounded-full transition-colors duration-700";
 
             const size = Math.random() * 2 + 1 + "px";
             particle.style.width = size;
