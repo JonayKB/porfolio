@@ -10,7 +10,7 @@ const availableLanguages = ["es", "en"];
       <button
         aria-label={`Switch to ${lang} language`}
         data-lang-btn={lang}
-        class="px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all duration-300 text-gray-400 light:text-gray-500 hover:text-white light:hover:text-black"
+        class="px-4 py-1.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all duration-500"
       >
         {lang}
       </button>
@@ -22,29 +22,36 @@ const availableLanguages = ["es", "en"];
   import { getLang, setLang } from "../i18n";
 
   const buttons = document.querySelectorAll("[data-lang-btn]");
-  const currentLang = getLang();
 
-  buttons.forEach((btn) => {
-    const lang = btn.getAttribute("data-lang-btn");
-
-    if (lang === currentLang) {
-      btn.classList.add("bg-white", "text-gray-500","hover:text-gray-800");
-      btn.classList.remove("text-gray-400","hover:text-white");
-    } else {
-      btn.classList.add("text-gray-400");
-    }
-
-    btn.addEventListener("click", () => {
-      if (lang && lang !== currentLang) {
-        setLang(lang);
-
-        const currentHash = window.location.hash;
-
-        window.location.href =
-          window.location.pathname + window.location.search + currentHash;
-
-        window.location.reload();
+  function updateActiveState(activeLang: string) {
+    buttons.forEach((btn) => {
+      const lang = btn.getAttribute("data-lang-btn");
+      
+      if (lang === activeLang) {
+        btn.classList.add("bg-white", "light:bg-black", "text-black", "light:text-white", "shadow-lg");
+        btn.classList.remove("text-gray-400", "light:text-gray-500", "hover:text-white", "light:hover:text-black");
+      } else {
+        btn.classList.remove("bg-white", "light:bg-black", "text-black", "light:text-white", "shadow-lg");
+        btn.classList.add("text-gray-400", "light:text-gray-500", "hover:text-white", "light:hover:text-black");
       }
     });
+  }
+
+  // 1. Inicialización
+  updateActiveState(getLang());
+
+  // 2. Eventos de Clic
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const lang = btn.getAttribute("data-lang-btn");
+      if (lang) {
+        setLang(lang); // Esto dispara el CustomEvent 'language-change'
+      }
+    });
+  });
+
+  // 3. Escuchar el cambio reactivo
+  window.addEventListener('language-change', (e: any) => {
+    updateActiveState(e.detail.lang);
   });
 </script>

@@ -16,7 +16,7 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
         class="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth bg-black text-white"
         id="scroll-root"
     >
-    <TopActionsContainer />
+        <TopActionsContainer />
         <Start />
         <Projects />
         <Skills />
@@ -42,14 +42,70 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
 
     <script>
         import { languages, getLang } from "../i18n";
-        // --- 1. i18n ---
-        const lang = getLang();
-        const t = languages[lang];
-        document.querySelectorAll("[data-i18n]").forEach((el) => {
-            el.textContent = t[el.dataset.i18n] ?? el.dataset.i18n;
+        function updateTexts(lang, animate = false) {
+            const t = languages[lang];
+            const elements = document.querySelectorAll("[data-i18n]");
+
+            elements.forEach((el) => {
+                const key = el.dataset.i18n;
+                const newText = t[key] ?? key;
+
+                // Si no hay animación (primera carga), solo asignamos el texto
+                if (!animate) {
+                    el.textContent = newText;
+                    return;
+                }
+
+                // --- Lógica de Animación (Solo al cambiar idioma) ---
+                const isLevelBadge = el.classList.contains(
+                    "group-hover:opacity-100",
+                );
+
+                if (!el.dataset.originalOpacity) {
+                    el.dataset.originalOpacity =
+                        window.getComputedStyle(el).opacity;
+                }
+
+                el.style.transition = "opacity 0.2s ease, transform 0.2s ease";
+                el.style.opacity = "0";
+                el.style.transform = "translateY(5px)";
+
+                setTimeout(() => {
+                    el.textContent = "";
+
+                    if (isLevelBadge) {
+                        el.style.opacity = "";
+                    } else {
+                        el.style.opacity = el.dataset.originalOpacity;
+                    }
+
+                    el.style.transform = "translateY(0)";
+
+                    let i = 0;
+                    const speed = 25;
+                    function type() {
+                        if (i < newText.length) {
+                            el.textContent += newText.charAt(i);
+                            i++;
+                            setTimeout(type, speed);
+                        }
+                    }
+                    type();
+                }, 250);
+            });
+        }
+
+        // 1. Ejecución inicial: SIN animación
+        const currentLang = getLang();
+        updateTexts(currentLang, false);
+
+        // 2. Cambio manual: CON animación
+        window.addEventListener("language-change", (e: any) => {
+            updateTexts(e.detail.lang, true);
         });
 
         // --- 2. Animaciones de Aparición General (Intro/Skills/Exp) ---
+        // (Tu código del IntersectionObserver se mantiene igual...)
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -68,51 +124,51 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
             .querySelectorAll("[data-animate]")
             .forEach((el) => observer.observe(el));
 
-        // --- 3. Parallax del Fondo (Scroll Vertical General) ---
+        // --- 3. Parallax y Navegación ---
+        // (Tu código de Parallax y URL Observer se mantiene igual...)
         const root = document.getElementById("scroll-root");
         const parallaxItems = document.querySelectorAll("[data-parallax]");
-        root.addEventListener("scroll", () => {
-            const scrollTop = root.scrollTop;
-            parallaxItems.forEach((el) => {
-                const speed = Number(el.dataset.speed) || 0.2;
-                el.style.transform = `translateY(${scrollTop * speed}px)`;
+        if (root) {
+            root.addEventListener("scroll", () => {
+                const scrollTop = root.scrollTop;
+                parallaxItems.forEach((el: any) => {
+                    const speed = Number(el.dataset.speed) || 0.2;
+                    el.style.transform = `translateY(${scrollTop * speed}px)`;
+                });
             });
-        });
-        // --- LÓGICA DE NAVEGACIÓN Y URL ---
+        }
 
-        // 1. Manejar el scroll automático al cargar la página si hay un hash
+        // 1. Manejar el scroll automático al cargar
         window.addEventListener("load", () => {
             const hash = window.location.hash;
             if (hash) {
                 const targetSection = document.querySelector(hash);
-                if (targetSection) {
+                if (targetSection)
                     targetSection.scrollIntoView({ behavior: "smooth" });
-                }
             }
         });
 
-        // 2. Observer para actualizar la URL mientras scrolleas
-        const observerOptions = {
-            root: null, 
-            threshold: 0.6, 
-        };
-
-        const urlObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.id;
-                    if (id) {
-                        history.replaceState(null, null, `#${id}`);
+        // 2. Observer para actualizar la URL
+        const urlObserver = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting && entry.target.id) {
+                        history.replaceState(null, "", `#${entry.target.id}`);
                     }
-                }
-            });
-        }, observerOptions);
+                });
+            },
+            { threshold: 0.6 },
+        );
 
-        document.querySelectorAll("section[id]").forEach((section) => {
-            urlObserver.observe(section);
-        });
         document
-            .querySelector('section[id="' + window.location.hash + '"]')
-            ?.scrollIntoView({ behavior: "instant" });
+            .querySelectorAll("section[id]")
+            .forEach((section) => urlObserver.observe(section));
+
+        // Scroll instantáneo al hash inicial
+        if (window.location.hash) {
+            document
+                .querySelector('section[id="' + window.location.hash + '"]')
+                ?.scrollIntoView({ behavior: "instant" });
+        }
     </script>
 </Base>
