@@ -43,57 +43,67 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
     <script>
         import { languages, getLang } from "../i18n";
         function updateTexts(lang, animate = false) {
-            const t = languages[lang];
-            const elements = document.querySelectorAll("[data-i18n]");
+    const t = languages[lang];
+    const elements = document.querySelectorAll("[data-i18n]");
 
-            elements.forEach((el) => {
-                const key = el.dataset.i18n;
-                const newText = t[key] ?? key;
+    elements.forEach((el) => {
+        const key = el.dataset.i18n;
+        const newText = t[key] ?? key;
 
-                // Si no hay animación (primera carga), solo asignamos el texto
-                if (!animate) {
-                    el.textContent = newText;
-                    return;
-                }
-
-                // --- Lógica de Animación (Solo al cambiar idioma) ---
-                const isLevelBadge = el.classList.contains(
-                    "group-hover:opacity-100",
-                );
-
-                if (!el.dataset.originalOpacity) {
-                    el.dataset.originalOpacity =
-                        window.getComputedStyle(el).opacity;
-                }
-
-                el.style.transition = "opacity 0.2s ease, transform 0.2s ease";
-                el.style.opacity = "0";
-                el.style.transform = "translateY(5px)";
-
-                setTimeout(() => {
-                    el.textContent = "";
-
-                    if (isLevelBadge) {
-                        el.style.opacity = "";
-                    } else {
-                        el.style.opacity = el.dataset.originalOpacity;
-                    }
-
-                    el.style.transform = "translateY(0)";
-
-                    let i = 0;
-                    const speed = 25;
-                    function type() {
-                        if (i < newText.length) {
-                            el.textContent += newText.charAt(i);
-                            i++;
-                            setTimeout(type, speed);
-                        }
-                    }
-                    type();
-                }, 250);
-            });
+        // --- 1. Cancelar cualquier animación previa en este elemento ---
+        if (el.dataset.timeoutId) {
+            clearTimeout(parseInt(el.dataset.timeoutId));
         }
+
+        if (!animate) {
+            el.textContent = newText;
+            return;
+        }
+
+        // --- 2. Lógica de Animación ---
+        const isLevelBadge = el.classList.contains("group-hover:opacity-100");
+
+        if (!el.dataset.originalOpacity) {
+            el.dataset.originalOpacity = window.getComputedStyle(el).opacity;
+        }
+
+        el.style.transition = "opacity 0.2s ease, transform 0.2s ease";
+        el.style.opacity = "0";
+        el.style.transform = "translateY(5px)";
+
+        // Guardamos el timeout del fade-out para poder cancelarlo también
+        const mainTimeout = setTimeout(() => {
+            el.textContent = "";
+
+            if (isLevelBadge) {
+                el.style.opacity = "";
+            } else {
+                el.style.opacity = el.dataset.originalOpacity;
+            }
+
+            el.style.transform = "translateY(0)";
+
+            let i = 0;
+            const speed = 25;
+
+            function type() {
+                if (i < newText.length) {
+                    el.textContent += newText.charAt(i);
+                    i++;
+                    // Guardamos el ID del siguiente carácter
+                    const nextStepTimeout = setTimeout(type, speed);
+                    el.dataset.timeoutId = nextStepTimeout.toString();
+                } else {
+                    // Limpiamos al terminar
+                    el.dataset.timeoutId = "";
+                }
+            }
+            type();
+        }, 250);
+
+        el.dataset.timeoutId = mainTimeout.toString();
+    });
+}
 
         // 1. Ejecución inicial: SIN animación
         const currentLang = getLang();
