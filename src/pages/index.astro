@@ -50,17 +50,13 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
                 const key = el.dataset.i18n;
                 const newText = t[key] ?? key;
 
-                // --- 1. Cancelar cualquier animación previa en este elemento ---
-                if (el.dataset.timeoutId) {
-                    clearTimeout(parseInt(el.dataset.timeoutId));
-                }
-
+                // Si no hay animación (primera carga), solo asignamos el texto
                 if (!animate) {
                     el.textContent = newText;
                     return;
                 }
 
-                // --- 2. Lógica de Animación ---
+                // --- Lógica de Animación (Solo al cambiar idioma) ---
                 const isLevelBadge = el.classList.contains(
                     "group-hover:opacity-100",
                 );
@@ -74,8 +70,7 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
                 el.style.opacity = "0";
                 el.style.transform = "translateY(5px)";
 
-                // Guardamos el timeout del fade-out para poder cancelarlo también
-                const mainTimeout = setTimeout(() => {
+                setTimeout(() => {
                     el.textContent = "";
 
                     if (isLevelBadge) {
@@ -88,23 +83,15 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
 
                     let i = 0;
                     const speed = 25;
-
                     function type() {
                         if (i < newText.length) {
                             el.textContent += newText.charAt(i);
                             i++;
-                            // Guardamos el ID del siguiente carácter
-                            const nextStepTimeout = setTimeout(type, speed);
-                            el.dataset.timeoutId = nextStepTimeout.toString();
-                        } else {
-                            // Limpiamos al terminar
-                            el.dataset.timeoutId = "";
+                            setTimeout(type, speed);
                         }
                     }
                     type();
                 }, 250);
-
-                el.dataset.timeoutId = mainTimeout.toString();
             });
         }
 
