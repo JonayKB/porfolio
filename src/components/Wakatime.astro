@@ -2,8 +2,18 @@
 const WAKA_API_KEY = import.meta.env.WAKA_API_KEY;
 const encodedKey = btoa(WAKA_API_KEY);
 
-let stats7Days = null;
-let statsAllTime = null;
+type WakaTimeStats = {
+  languages: Array<{
+    name: string;
+    percent: number;
+  }>;
+  human_readable_total: string;
+  human_readable_total_including_other_language: string;
+  total: number;
+};
+
+let stats7Days: WakaTimeStats | null = null;
+let statsAllTime: WakaTimeStats | null = null;
 
 try {
   const [res7, resAll] = await Promise.all([
@@ -25,7 +35,7 @@ try {
 
 <section
   id="wakatime"
-  class="snap-start min-h-[100dvh] h-fit md:h-screen relative flex items-center bg-[#050505] light:bg-[#f9fafb] overflow-hidden py-10 md:py-0 transition-colors duration-700 "
+  class="snap-start min-h-[100dvh] h-fit md:h-screen relative flex items-center bg-[#050505] light:bg-[#f9fafb] overflow-hidden py-10 md:py-0 transition-colors duration-700"
 >
   <div class="container mx-auto px-6 md:px-12 relative z-10">
     <div
@@ -104,24 +114,26 @@ try {
               class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 md:gap-y-6"
             >
               {
-                stats7Days?.languages.slice(0, 4).map((lang) => (
-                  <div>
-                    <div class="flex justify-between mb-1.5 text-[10px] md:text-xs uppercase tracking-tighter">
-                      <span class="text-white light:text-gray-900 font-bold">
-                        {lang.name}
-                      </span>
-                      <span class="text-gray-400 light:text-gray-500">
-                        {lang.percent}%
-                      </span>
+                stats7Days?.languages
+                  .slice(0, 4)
+                  .map((lang: { name: string; percent: number }) => (
+                    <div>
+                      <div class="flex justify-between mb-1.5 text-[10px] md:text-xs uppercase tracking-tighter">
+                        <span class="text-white light:text-gray-900 font-bold">
+                          {lang.name}
+                        </span>
+                        <span class="text-gray-400 light:text-gray-500">
+                          {lang.percent}%
+                        </span>
+                      </div>
+                      <div class="w-full h-1 md:h-1.5 bg-white/10 light:bg-black/5 rounded-full overflow-hidden">
+                        <div
+                          class="h-full bg-indigo-500"
+                          style={`width: ${lang.percent}%`}
+                        />
+                      </div>
                     </div>
-                    <div class="w-full h-1 md:h-1.5 bg-white/10 light:bg-black/5 rounded-full overflow-hidden">
-                      <div
-                        class="h-full bg-indigo-500"
-                        style={`width: ${lang.percent}%`}
-                      />
-                    </div>
-                  </div>
-                ))
+                  ))
               }
             </div>
           </div>
@@ -129,7 +141,7 @@ try {
 
         <div
           id="wrap-all"
-          class="col-start-1 row-start-1 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 transition-all duration-500 z-0 opacity-0 translate-x-10 pointer-events-none theme-perf-target"
+          class="col-start-1 row-start-1 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 transition-all duration-500 z-0 opacity-0 translate-x-10 pointer-events-none"
         >
           <div
             class="bg-white/5 light:bg-white border border-amber-500/30 light:border-amber-200 p-5 md:p-8 rounded-2xl md:rounded-3xl backdrop-blur-xl light:shadow-xl light:shadow-amber-500/5 group"
@@ -235,29 +247,30 @@ try {
   const wAll = document.getElementById("wrap-all");
 
   function toggle(showAll: boolean) {
+    if (!(bAll || b7 || w7 || wAll)) return;
     if (showAll) {
       // Botones
-      bAll.className =
+      bAll!.className =
         "relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all bg-white text-black";
-      b7.className =
+      b7!.className =
         "relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all text-gray-400 hover:text-white";
       // Wrappers
-      w7.classList.replace("opacity-100", "opacity-0");
-      w7.classList.add("translate-x-[-20px]", "pointer-events-none", "z-0");
-      wAll.classList.replace("opacity-0", "opacity-100");
-      wAll.classList.remove("translate-x-10", "pointer-events-none", "z-0");
-      wAll.classList.add("translate-x-0", "z-10");
+      w7!.classList.replace("opacity-100", "opacity-0");
+      w7!.classList.add("translate-x-[-20px]", "pointer-events-none", "z-0");
+      wAll!.classList.replace("opacity-0", "opacity-100");
+      wAll!.classList.remove("translate-x-10", "pointer-events-none", "z-0");
+      wAll!.classList.add("translate-x-0", "z-10");
     } else {
-      b7.className =
+      b7!.className =
         "relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all bg-white text-black";
-      bAll.className =
+      bAll!.className =
         "relative z-10 px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-widest transition-all text-gray-400 hover:text-white";
 
-      wAll.classList.replace("opacity-100", "opacity-0");
-      wAll.classList.add("translate-x-10", "pointer-events-none", "z-0");
-      w7.classList.replace("opacity-0", "opacity-100");
-      w7.classList.remove("translate-x-[-20px]", "pointer-events-none", "z-0");
-      w7.classList.add("translate-x-0", "z-10");
+      wAll!.classList.replace("opacity-100", "opacity-0");
+      wAll!.classList.add("translate-x-10", "pointer-events-none", "z-0");
+      w7!.classList.replace("opacity-0", "opacity-100");
+      w7!.classList.remove("translate-x-[-20px]", "pointer-events-none", "z-0");
+      w7!.classList.add("translate-x-0", "z-10");
     }
   }
 

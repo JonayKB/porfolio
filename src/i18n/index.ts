@@ -14,7 +14,7 @@ export type Lang = keyof typeof languages;
 export function setLang(lang: string) {
   localStorage.setItem(STORAGE_KEY, lang);
   document.documentElement.lang = lang; // Cambia el atributo lang del HTML
-  
+
   // Emitimos un evento personalizado para que el script de Astro sepa que debe traducir
   const event = new CustomEvent('language-change', { detail: { lang } });
   window.dispatchEvent(event);
@@ -26,15 +26,16 @@ export function getBrowserLang() {
   return SUPPORTED.includes(lang) ? lang : DEFAULT_LANG;
 }
 
-export function getLang() {
+export function getLang(): Lang {
   if (typeof window !== 'undefined') {
-    return localStorage.getItem(STORAGE_KEY) || getBrowserLang();
+    return (localStorage.getItem(STORAGE_KEY) || getBrowserLang()) as Lang;
   }
   return DEFAULT_LANG;
 }
 
 export function translate(key: string) {
-  const lang = getLang();
-  console.log(key)
-  return languages[lang][key] || key;
+  const lang = getLang() as Lang;
+  const langData = languages[lang];
+
+  return (langData as any)[key] || key;
 }

@@ -209,7 +209,7 @@
 <script>
     // --- 1. LÓGICA DE PROYECTOS (HORIZONTAL) ---
     const track = document.getElementById("horizontal-track");
-    const bgs = document.querySelectorAll(".project-bg");
+    const bgs = document.querySelectorAll<HTMLElement>(".project-bg");
     const projectsSection = document.getElementById("projects-section");
 
     let isScrollingActive = false;
@@ -257,7 +257,9 @@
         });
 
         bgs.forEach((bg, i) => {
-            const text = document.querySelectorAll("[data-animate-project]")[i];
+            const text = document.querySelectorAll<HTMLElement>(
+                "[data-animate-project]",
+            )[i];
             if (i === index) {
                 bg.style.opacity = "1";
                 bg.style.transform = "scale(1)";
