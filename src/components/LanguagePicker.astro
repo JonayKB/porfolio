@@ -44,7 +44,7 @@ const availableLanguages = ["es", "en"];
   buttons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const lang = btn.getAttribute("data-lang-btn");
-      if (lang) {
+      if (lang && lang !== getLang()) {
         setLang(lang); // Esto dispara el CustomEvent 'language-change'
       }
     });
