@@ -73,6 +73,12 @@ export default {
   edu_daw_desc: "Focus on modern web architectures, Nginx server management, and advanced frontend development.",
 
   // --- Proyectos
+
+  project0_title: "Routine",
+  project0_subtitle: "Fights",
+  project0_description: "Competitive platform to gamify your daily routines and turn them into epic challenges.",
+  project0_button: "View Repository",
+
   project1_title: "Local",
   project1_subtitle: "ShopSystem",
   project1_description: "System for managing local stores with inventory, sales, and integrated analytics.",

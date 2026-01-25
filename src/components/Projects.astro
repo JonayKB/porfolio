@@ -46,6 +46,20 @@
             >
             </div>
         </div>
+        <div
+            class="absolute inset-0 transition-all duration-1000 opacity-0 scale-110 project-bg"
+            id="bg-project-4"
+        >
+            <img
+                alt="Project 4 Background"
+                src="assets/img/project-4-bg.webp"
+                class="w-full h-full object-cover"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-indigo-950/80 via-black/50 to-black/80"
+            >
+            </div>
+        </div>
     </div>
 
     <div class="absolute left-12 top-1/2 -translate-y-1/2 z-20 hidden md:block">
@@ -66,11 +80,11 @@
            md:bottom-auto md:top-1/2 md:right-12 md:-translate-y-1/2 md:left-auto md:translate-x-0 md:flex-col md:gap-6"
     >
         {
-            [0, 1, 2].map((i) => (
+            [0, 1, 2, 3].map((i) => (
                 <button
-                    aria-label={`Go to Project ${i + 1}`}
+                    aria-label={`Go to Project ${i}`}
                     class="group flex items-center gap-4 transition-all outline-none project-dot-btn"
-                    data-index={i}
+                    data-index={i + 1}
                 >
                     <span class="text-[10px] uppercase tracking-[0.3em] text-white opacity-0 md:group-hover:opacity-100 transition-opacity font-bold hidden md:block">
                         Proyecto {i + 1}
@@ -78,8 +92,7 @@
 
                     <div class="w-8 h-8 md:w-6 md:h-6 flex items-center justify-center">
                         <div
-                            class={`w-2 h-2 rounded-full border border-white/50 dot-indicator transition-all duration-500 
-                        ${i === 0 ? "bg-white scale-150 shadow-[0_0_10px_rgba(255,255,255,0.5)]" : "bg-transparent hover:border-white"}`}
+                            class={`w-2 h-2 rounded-full border border-white/50 dot-indicator transition-all duration-500 `}
                         />
                     </div>
                 </button>
@@ -94,13 +107,50 @@
         <article
             class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
         >
-            <div class="max-w-4xl text-center" data-animate-project>
+            <div
+                class="max-w-4xl text-center opacity-0 translate-y-10 md:translate-y-20 transition-all duration-1000"
+                data-animate-project
+            >
+                <h3
+                    class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
+                >
+                    Routine <br />
+                    <span
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-orange-500"
+                        >Fights</span
+                    >
+                </h3>
+                <p
+                    class="text-base md:text-2xl text-gray-400 max-w-[280px] sm:max-w-md md:max-w-xl mx-auto font-light leading-relaxed px-2 md:px-0"
+                    data-i18n="project0_description"
+                >
+                    Plataforma competitiva para gamificar tus rutinas diarias y
+                    convertirlas en desafíos épicos.
+                </p>
+                <div class="mt-8 md:mt-12">
+                    <a
+                        href="https://github.com/jonaykb/routine-fights"
+                        target="_blank"
+                        class="px-8 py-3 md:px-10 md:py-4 border border-white/20 bg-white/5 backdrop-blur-md rounded-full hover:bg-white hover:text-black transition-all duration-500 text-xs md:text-sm uppercase tracking-widest font-bold inline-block"
+                        data-i18n="project0_button"
+                    >
+                        Ver Repositorio
+                    </a>
+                </div>
+            </div>
+        </article>
+        <article
+            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
+        >
+            <div
+                class="max-w-4xl text-center opacity-0 translate-y-10 md:translate-y-20 transition-all duration-1000"
+                data-animate-project
+            >
                 <h3
                     class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
                 >
                     Local <br />
                     <span
-                        data-i18n="project1_subtitle"
                         class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500"
                         >ShopSystem</span
                     >
@@ -136,7 +186,7 @@
                     class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
                 >
                     KB <br />
-                    <span class="text-indigo-400" data-i18n="project2_subtitle"
+                    <span class="text-indigo-400"
                         >Discord Bot</span
                     >
                 </h3>
@@ -164,14 +214,14 @@
             class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
         >
             <div
-                class="max-w-4xl text-center opacity-0 translate-y-10 md:translate-y-20 transition-all duration-1000"
+                class="max-w-4xl text-center  translate-y-10 md:translate-y-20 transition-all duration-1000"
                 data-animate-project
             >
                 <h3
                     class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
                 >
                     Cuidado <br />
-                    <span class="text-indigo-400" data-i18n="project3_subtitle"
+                    <span class="text-indigo-400"
                         >Plantas</span
                     >
                 </h3>

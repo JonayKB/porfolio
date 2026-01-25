@@ -70,6 +70,12 @@ export default {
   edu_daw_desc: "Enfoque en arquitecturas web modernas, gestión de servidores con Nginx y desarrollo frontend avanzado.",
 
   // --- Proyectos
+
+  project0_title: "Routine",
+  project0_subtitle: "Fights",
+  project0_description: "Plataforma competitiva para gamificar tus rutinas diarias y convertirlas en desafíos épicos.",
+  project0_button: "Ver Repositorio",
+
   project1_title: "Local",
   project1_subtitle: "ShopSystem",
   project1_description: "Sistema de gestión para tiendas locales con inventario, ventas y análisis integrado.",
@@ -85,4 +91,6 @@ export default {
   project3_subtitle: "Plantas",
   project3_description: "Red social en Laravel para compartir cuidados de plantas.",
   project3_button: "Ver Repositorio"
+
+
 }
