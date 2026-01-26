@@ -3,45 +3,24 @@ import "../styles/global.css";
 const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
 ---
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
+    
     <title>JonayKB | Full Stack Developer Portfolio</title>
-    <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "ProfilePage",
-  "dateCreated": "2024-01-20T00:00:00-0600",
-  "dateModified": "2026-01-26T00:00:00-0600",
-  "mainEntity": {
-    "@type": "Person",
-    "name": "Jonay Contreras Rodriguez",
-    "alternateName": "JonayKB",
-    "identifier": "JonayKB",
-    "image": "https://me.jonaykb.com/web-app-manifest-512x512.png",
-    "jobTitle": "Full Stack Developer",
-    "url": "https://me.jonaykb.com",
-    "sameAs": [
-      "https://instagram.com/JonayKB_",
-      "https://github.com/JonayKB",
-      "https://linkedin.com/in/jonay-contreras-rodriguez"
-    ]
-  }
-}
-</script>
-    <meta name="description" id="meta-description" content="JonayKB's portfolio showcasing web development projects and skills. Developed with Astro. This contains a collection of my work, including websites, applications, and more." />
-    <link rel="canonical" href="https://me.jonaykb.com/" />
+    <meta name="description" id="meta-description" content="JonayKB's portfolio showcasing web development projects and skills..." />
     <meta name="author" content="Jonay Contreras Rodriguez (JonayKB)" />
-    <meta name="publish_date" content="2026-01-20T00:00:00-0600" />
-    <meta name="theme-color" content="#615fff" />
-    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+    <link rel="canonical" href="https://me.jonaykb.com/" />
+
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#615fff" />
     <meta name="apple-mobile-web-app-title" content="JonayKB" />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://me.jonaykb.com/" />
+
+    <meta property="og:type" content="profile" /> <meta property="og:url" content="https://me.jonaykb.com/" />
     <meta property="og:site_name" content="JonayKB Portfolio" />
     <meta property="og:title" content="JonayKB | Full Stack Developer" />
     <meta property="og:description" content="Explore my web development projects and skills." />
@@ -49,6 +28,32 @@ const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="598" />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="publish_date" content="2026-01-20T00:00:00-0600" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfilePage",
+      "dateCreated": "2024-01-20T00:00:00-0600",
+      "dateModified": "2026-01-26T00:00:00-0600",
+      "mainEntity": {
+        "@type": "Person",
+        "name": "Jonay Contreras Rodriguez",
+        "alternateName": "JonayKB",
+        "identifier": "JonayKB",
+        "image": "https://me.jonaykb.com/web-app-manifest-512x512.png",
+        "jobTitle": "Full Stack Developer",
+        "url": "https://me.jonaykb.com",
+        "sameAs": [
+          "https://instagram.com/JonayKB_",
+          "https://github.com/JonayKB",
+          "https://linkedin.com/in/jonay-contreras-rodriguez"
+        ]
+      }
+    }
+    </script>
+
     {googleAnalyticsId && (
       <>
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
@@ -62,20 +67,26 @@ const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
       </>
     )}
     
-<script>
-  import { translate } from "../i18n";
-  function applyMetaTranslations() {
-    const savedLang = localStorage.getItem('lang');
-    if (savedLang) document.documentElement.lang = savedLang;
-    const desc = document.getElementById('meta-description');
-    if (desc) {
-      desc.setAttribute('content', translate('description'));
-  }
-  document.title = translate('title');}
-  applyMetaTranslations()
+    <script>
+      import { translate } from "../i18n"; 
+      
+      function applyMetaTranslations() {
+        const savedLang = localStorage.getItem('lang');
+        if (savedLang) document.documentElement.lang = savedLang;
+        
+        const desc = document.getElementById('meta-description');
+        if (desc && typeof translate === 'function') {
+           const translatedDesc = translate('description');
+           if(translatedDesc) desc.setAttribute('content', translatedDesc);
+        }
+        
+        const newTitle = translate('title');
+        if (newTitle) document.title = newTitle;
+      }
 
-  window.addEventListener('language-change', applyMetaTranslations);
-</script>
+      applyMetaTranslations();
+      window.addEventListener('language-change', applyMetaTranslations);
+    </script>
 </head>
     <body>
         <slot />
