@@ -1,6 +1,8 @@
 export default {
   projects: "Proyectos",
   projects_desc: "Una selección de trabajos recientes",
+  description: "El portafolio de JonayKB que muestra proyectos y habilidades de desarrollo web. Desarrollado con Astro. Esta contiene una colección de mi trabajo, incluyendo sitios web, aplicaciones y más.",
+  title: "JonayKB | Portafolio de Desarrollador Full Stack",
   // --- Experience
   exp_title: "Experiencia Laboral",
   exp_company: "Servicio de Emergencia y Rescate",
