@@ -63,6 +63,7 @@ export default {
   contact_copy: "Copy email",
   copied: "Copied!",
   contact_social: "Social Media",
+  contact_download: "Download CV",
 
   //- Titulos
   edu_title: "Education",
