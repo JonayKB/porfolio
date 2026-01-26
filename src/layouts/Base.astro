@@ -27,18 +27,6 @@ const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="598" />
     <meta name="twitter:card" content="summary_large_image" />
-    {googleAnalyticsId && (
-      <>
-        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
-        <script is:inline define:vars={{ googleAnalyticsId }}>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){ dataLayer.push(arguments); }
-          window.gtag = gtag;
-          gtag('js', new Date());
-          gtag('config', googleAnalyticsId);
-        </script>
-      </>
-    )}
     <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,6 +42,19 @@ const googleAnalyticsId = import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID;
     "jobTitle": "Full Stack Developer"
   }
 </script>
+    {googleAnalyticsId && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}></script>
+        <script is:inline define:vars={{ googleAnalyticsId }}>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){ dataLayer.push(arguments); }
+          window.gtag = gtag;
+          gtag('js', new Date());
+          gtag('config', googleAnalyticsId);
+        </script>
+      </>
+    )}
+    
 <script>
   import { translate } from "../i18n";
   function applyMetaTranslations() {
