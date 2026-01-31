@@ -1,43 +1,67 @@
-# Astro Starter Kit: Minimal
 
-```sh
-npm create astro@latest -- --template minimal
+# Developer Portfolio | Built with Astro
+
+A high-performance, SEO-optimized portfolio built with **Astro**, **TypeScript**, and **Tailwind CSS**. This project leverages Astro's "Island Architecture" to deliver a blazing-fast user experience with specialized features like a custom i18n system and adaptive theming.
+
+## Key Features
+
+* **🚀 Astro Performance:** Zero-runtime JavaScript by default, ensuring lightning-fast load times and perfect Lighthouse scores.
+* **🌍 Type-Safe i18n:** A custom-built internationalization engine supporting English and Spanish, integrated directly into Astro's build process.
+* **🌓 Adaptive Theming:** Seamless Dark and Light mode transitions with specialized "Light" variants using Tailwind's `light:` modifier (custom implementation).
+* **🛡️ Type Safety:** Fully typed props and data structures with **TypeScript**.
+* **🎨 Modern UI/UX:** Features advanced Tailwind techniques: backdrop blurs, custom animations, and responsive grid layouts.
+* **📧 Dynamic Assets:** Context-aware CV downloads and email management based on the active locale.
+
+## Tech Stack
+
+* **Framework:** [Astro](https://astro.build/)
+* **Core:** [TypeScript](https://www.typescriptlang.org/)
+* **Styles:** [Tailwind CSS](https://tailwindcss.com/)
+* **Deployment:** Optimized for Vercel/Netlify
+
+## Getting Started
+
+### Installation
+
+1. **Clone the repository:**
+```bash
+git clone https://github.com/JonayKB/portfolio.git
+cd portfolio
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-## 🚀 Project Structure
+2. **Install dependencies:**
+```bash
+npm install
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+
+3. **Start the development server:**
+```bash
+npm run dev
+```
+
+
+4. **Build for production:**
+```bash
+npm run build
+```
+
+## Project Structure
 
 ```text
-/
-├── public/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/     # Astro components (.astro)
+│   ├── i18n/           # Type-safe dictionaries (es.ts, en.ts)
+│   ├── layouts/        # BaseLayout and Page wrappers
+│   └── pages/          # File-based routing
+├── public/             # Static assets (PDF CVs, original images)
+├── astro.config.mjs    # Astro configuration
+└── tailwind.config.js  # Theme & Glassmorphism definitions
 ```
+## Author
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+**Jonay Contreras Rodríguez**
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+* **LinkedIn:** [linkedin.com/in/jonaykb](https://www.linkedin.com/in/jonay-contreras-rodriguez/)
+* **Portfolio:** [jonaykb.dev](https://me.jonaykb.com)
