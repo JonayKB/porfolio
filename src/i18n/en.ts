@@ -14,6 +14,14 @@ export default {
   exp_item4: "Collaborative workflow through PRs (Branching & Merging).",
   exp_item5: "Full deployment of static and dynamic applications.",
 
+  exp_company_2: "Dst Factory",
+  exp_role_2: "Full Stack Developer",
+  exp_date_2: "18/02/2026 - 18/06/2026",
+  exp_item2_1: "Spring Boot backend with Flyway migrations, OAuth2 + JWT security, Redis caching, containerisation and unit testing.",
+  exp_item2_2: "AngularJS frontend with route guards, routing and Spring Boot REST API integration; Docker, unit testing and Cypress e2e.",
+  exp_item2_3: "Raspberry Pi setup with QR reader and status display circuit using MicroPython and Arduino.",
+  exp_item2_4: "Internship contract in a hybrid environment, collaborating across the full development lifecycle with a multidisciplinary team.",
+
   // --- Skills
   skills: "Skills",
   skills_frontend: "Frontend",

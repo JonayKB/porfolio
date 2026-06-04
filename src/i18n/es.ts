@@ -13,6 +13,14 @@ export default {
   exp_item3: "Arquitectura basada en componentes reutilizables.",
   exp_item4: "Flujo de trabajo colaborativo mediante PRs (Branching & Merging).",
   exp_item5: "Despliegue integral de aplicaciones estáticas y dinámicas.",
+
+  exp_company_2: "Dst Factory",
+  exp_role_2: "Desarrollador Full Stack",
+  exp_date_2: "18/02/2026 - 18/06/2026",
+  exp_item2_1: "Backend Spring Boot con migraciones Flyway, seguridad OAuth2 + JWT, caché Redis, dockerización y unit testing.",
+  exp_item2_2: "Frontend AngularJS con guards, routing y consumo de la API REST Spring Boot; dockerización, unit testing y e2e con Cypress.",
+  exp_item2_3: "Configuración de Raspberry Pi con lector QR y circuito de visualización de estados mediante MicroPython y Arduino.",
+  exp_item2_4: "Contrato de prácticas en entorno híbrido, colaborando con equipo multidisciplinar en ciclo completo de desarrollo.",
   // --- Skills
   skills: "Habilidades",
   skills_frontend: "Frontend",

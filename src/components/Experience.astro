@@ -1,102 +1,150 @@
+---
+const experiences = [
+{
+    year: "2026",
+    location: "Tenerife",
+    company: "exp_company_2",
+    role: "exp_role_2",
+    date: "exp_date_2",
+    items: ["exp_item2_1", "exp_item2_2", "exp_item2_3", "exp_item2_4"],
+    skills: ["Spring Boot", "AngularJS", "Redis", "Docker", "Cypress", "Raspberry Pi", "Arduino", "Spring Security", "MicroPython"],
+    side: "left",
+},
+    {
+        year: "2025",
+        location: "Malta",
+        company: "Emergency Rescue & Response Corps",
+        role: "exp_role",
+        date: "exp_date",
+        items: ["exp_item1", "exp_item2", "exp_item3", "exp_item4", "exp_item5"],
+        skills: ["React", "Git Flow", "Deployment"],
+        side: "right",
+    },
+    
+];
+---
+
 <section
     id="experience"
-    class="snap-start min-h-[100dvh] h-fit md:h-screen relative flex items-center bg-[#030303] light:bg-[#f9fafb] overflow-hidden py-16 md:py-0 transition-colors duration-700"
+    class="snap-start min-h-[100dvh] h-fit relative flex flex-col justify-center bg-[#030303] light:bg-[#f9fafb] overflow-hidden py-16 md:py-20 transition-colors duration-700"
 >
-    <div
-        class="absolute left-[10%] top-0 w-[1px] h-full bg-gradient-to-b from-transparent via-white/20 light:via-black/10 to-transparent pointer-events-none hidden md:block"
-    >
-    </div>
-
     <div class="container mx-auto px-6 md:px-12 relative z-10">
+
         <div
-            class="opacity-0 translate-y-10 transition-all duration-1000 ease-out flex flex-col md:flex-row gap-8 md:gap-16 items-center md:items-start"
+            class="opacity-0 translate-y-10 transition-all duration-1000 ease-out mb-10 md:mb-16"
             data-animate
         >
-            <div class="shrink-0 relative group">
-                <span
-                    class="experience-number text-[7rem] md:text-[15rem] font-black leading-none tracking-tighter text-transparent select-none transition-all duration-700 group-hover:opacity-30 light:group-hover:opacity-10"
-                >
-                    2025
-                </span>
-                <div class="absolute inset-0 flex items-center justify-center">
-                    <span
-                        class="text-indigo-500 light:text-indigo-600 font-mono text-lg md:text-2xl rotate-0 md:rotate-90 tracking-[0.3em] md:tracking-widest uppercase mt-4 md:mt-0"
-                    >
-                        Malta
-                    </span>
-                </div>
-            </div>
+            <h2
+                data-i18n="exp_title"
+                class="text-4xl md:text-7xl font-black mb-6 md:mb-12 tracking-tighter bg-clip-text text-transparent bg-gradient-to-r from-white to-white/30 light:from-gray-900 light:to-gray-400 transition-colors duration-700"
+            >
+                Experiencia Laboral
+            </h2>
+        </div>
 
-            <div class="max-w-3xl w-full">
-                <div class="mb-6 flex flex-wrap items-center gap-3 md:gap-4">
-                    <span
-                        data-i18n="exp_title"
-                        class="px-3 py-1 rounded-full border border-indigo-500/30 light:border-indigo-200 bg-indigo-500/10 light:bg-indigo-50 text-[10px] md:text-xs font-mono text-indigo-300 light:text-indigo-600 uppercase tracking-widest"
-                    >
-                        Experiencia Laboral
-                    </span>
-                    <span
-                        data-i18n="exp_date"
-                        class="text-gray-500 light:text-gray-400 font-mono text-[10px] md:text-xs"
-                    >
-                        17/03 - 16/05
-                    </span>
-                </div>
+        <div class="relative">
+            <!-- Línea central del timeline (solo desktop) -->
+            <div
+                class="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-indigo-500/30 light:via-indigo-400/40 to-transparent pointer-events-none"
+            ></div>
 
-                <h2
-                    data-i18n="exp_company"
-                    class="text-3xl md:text-6xl font-black tracking-tighter text-white light:text-gray-900 mb-2 leading-tight break-words transition-colors"
-                >
-                    Emergency Rescue & Response Corps
-                </h2>
-                <h3
-                    data-i18n="exp_role"
-                    class="text-lg md:text-2xl text-indigo-400 light:text-indigo-600 font-medium mb-6 md:mb-8 uppercase tracking-wide transition-colors"
-                >
-                    Desarrollador Web Frontend
-                </h3>
+            <!-- Línea lateral del timeline (solo mobile) -->
+            <div
+                class="md:hidden absolute left-4 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-indigo-500/30 to-transparent pointer-events-none"
+            ></div>
 
-                <ul class="space-y-4 md:space-y-5">
-                    {
-                        [
-                            "exp_item1",
-                            "exp_item2",
-                            "exp_item3",
-                            "exp_item4",
-                            "exp_item5",
-                        ].map((key) => (
-                            <li class="flex items-start gap-3 group">
-                                <span class="mt-2 w-1.5 h-1.5 shrink-0 rounded-full bg-indigo-500 light:bg-indigo-600 group-hover:scale-150 transition-transform" />
-                                <p
-                                    data-i18n={key}
-                                    class="text-gray-400 light:text-gray-600 group-hover:text-gray-200 light:group-hover:text-black transition-colors text-sm md:text-base leading-relaxed tracking-wide"
-                                />
-                            </li>
-                        ))
-                    }
-                </ul>
+            <div class="flex flex-col gap-12 md:gap-0">
+                {
+                    experiences.map((exp, index) => (
+                        <div
+                            class={`opacity-0 translate-y-10 transition-all duration-1000 ease-out relative flex items-start md:items-center gap-0 md:gap-8 md:mb-16
+                                ${exp.side === "right" ? "md:flex-row" : "md:flex-row-reverse"}
+                            `}
+                            data-animate
+                            style={`transition-delay: ${index * 150}ms`}
+                        >
+                            <!-- Tarjeta -->
+                            <div class={`pl-10 md:pl-0 w-full md:w-[calc(50%-2.5rem)] ${exp.side === "right" ? "md:text-right md:items-end" : "md:text-left md:items-start"} flex flex-col`}>
+                                <div class="group relative border border-white/5 light:border-black/8 bg-white/[0.03] light:bg-black/[0.02] hover:bg-white/[0.06] light:hover:bg-black/[0.04] rounded-2xl p-5 md:p-6 transition-all duration-500 hover:border-indigo-500/20">
 
-                <div class="mt-8 md:mt-10 flex flex-wrap gap-2 md:gap-3">
-                    {
-                        ["React", "Git Flow", "Deployment"].map((skill) => (
-                            <span class="px-3 py-1.5 md:px-4 md:py-2 bg-white/5 light:bg-black/5 border border-white/10 light:border-black/10 rounded-lg text-[10px] md:text-xs font-bold text-gray-300 light:text-gray-700 uppercase tracking-tighter hover:bg-white/10 light:hover:bg-black/10 transition-colors cursor-default">
-                                {skill}
-                            </span>
-                        ))
-                    }
-                </div>
+                                    <!-- Año + ubicación -->
+                                    <div class={`flex items-center gap-3 mb-3 ${exp.side === "right" ? "md:flex-row-reverse md:justify-start" : "flex-row"}`}>
+                                        <span class="font-mono text-[10px] md:text-xs text-indigo-400 light:text-indigo-600 tracking-[0.25em] uppercase">
+                                            {exp.location}
+                                        </span>
+                                        <span class="text-white/10 light:text-black/10">·</span>
+                                        <span class="font-black text-[10px] md:text-xs text-white/20 light:text-black/15 tracking-widest">
+                                            {exp.year}
+                                        </span>
+                                        <span class="font-mono text-[10px] text-gray-600 light:text-gray-400 ml-auto md:ml-0" data-i18n={exp.date}>
+                                            17/03 — 16/05
+                                        </span>
+                                    </div>
+
+                                    <!-- Empresa + rol -->
+                                    <h2
+                                        data-i18n={exp.company}
+                                        class="text-xl md:text-2xl font-black tracking-tighter text-white light:text-gray-900 mb-1 leading-tight transition-colors"
+                                    >
+                                        Emergency Rescue &amp; Response Corps
+                                    </h2>
+                                    <h3
+                                        data-i18n={exp.role}
+                                        class="text-xs md:text-sm text-indigo-400 light:text-indigo-600 font-medium mb-4 uppercase tracking-wider transition-colors"
+                                    >
+                                        Desarrollador Web Frontend
+                                    </h3>
+
+                                    <!-- Items -->
+                                    <ul class={`space-y-2.5 mb-5 ${exp.side === "right" ? "md:items-end" : ""}`}>
+                                        {exp.items.map((key) => (
+                                            <li class={`flex items-start gap-2.5 group/item ${exp.side === "right" ? "md:flex-row-reverse" : ""}`}>
+                                                <span class="mt-[7px] w-1 h-1 shrink-0 rounded-full bg-indigo-500/60 light:bg-indigo-500 group-hover/item:bg-indigo-400 transition-colors" />
+                                                <p
+                                                    data-i18n={key}
+                                                    class="text-gray-500 light:text-gray-500 group-hover/item:text-gray-300 light:group-hover/item:text-gray-700 transition-colors text-xs md:text-sm leading-relaxed"
+                                                />
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    <!-- Skills chips -->
+                                    <div class={`flex flex-wrap gap-2 ${exp.side === "right" ? "md:justify-end" : ""}`}>
+                                        {exp.skills.map((skill) => (
+                                            <span class="px-2.5 py-1 bg-white/[0.04] light:bg-black/[0.04] border border-white/8 light:border-black/8 rounded-md text-[10px] font-bold text-gray-400 light:text-gray-600 uppercase tracking-tight hover:bg-white/[0.08] transition-colors cursor-default">
+                                                {skill}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Nodo central del timeline -->
+                            <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 items-center justify-center z-10">
+                                <div class="w-3 h-3 rounded-full bg-indigo-500 ring-4 ring-indigo-500/20 ring-offset-0 transition-all duration-500 group-hover:ring-indigo-500/40" />
+                            </div>
+
+                            <!-- Nodo móvil lateral -->
+                            <div class="md:hidden absolute left-4 -translate-x-1/2 top-6 flex items-center justify-center z-10">
+                                <div class="w-2.5 h-2.5 rounded-full bg-indigo-500 ring-3 ring-indigo-500/20" />
+                            </div>
+
+                            <!-- Espacio vacío al otro lado (desktop) -->
+                            <div class="hidden md:block w-[calc(50%-2.5rem)]" />
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </div>
 
+    <!-- Glows decorativos -->
     <div
         class="absolute -bottom-20 -right-20 w-64 md:w-96 h-64 md:h-96 bg-indigo-600/10 light:bg-indigo-600/5 blur-[100px] md:blur-[120px] rounded-full pointer-events-none theme-perf-target"
-    >
-    </div>
+    ></div>
     <div
-        class="absolute top-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-purple-600/5 light:bg-purple-600/5 blur-[80px] md:blur-[100px] rounded-full pointer-events-none theme-perf-target"
-    >
-    </div>
+        class="absolute top-0 left-0 w-48 md:w-64 h-48 md:h-64 bg-purple-600/5 blur-[80px] md:blur-[100px] rounded-full pointer-events-none theme-perf-target"
+    ></div>
 </section>
 <style is:global>
     /* Estilo base (Oscuro) */

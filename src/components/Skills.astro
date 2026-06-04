@@ -9,7 +9,7 @@ enum Level {
 ---
 
 <section
-    class="snap-start h-[100dvh] relative flex items-center bg-[#030303] light:bg-[#f9fafb] overflow-hidden transition-colors duration-700"
+    class="snap-start min-h-[100dvh] md:h-[100dvh] relative flex items-center bg-[#030303] light:bg-[#f9fafb] overflow-hidden transition-colors duration-700"
     id="skills"
 >
     <div
@@ -23,7 +23,7 @@ enum Level {
     >
     </div>
 
-    <div class="container mx-auto px-6 md:px-12 relative z-10 py-4 md:py-0">
+    <div class="container mx-auto px-6 md:px-12 relative z-10 py-12 md:py-0">
         <div
             class="opacity-0 translate-y-10 transition-all duration-1000 ease-out"
             data-animate
@@ -153,7 +153,7 @@ enum Level {
                                 class="text-[10px] md:text-xs uppercase tracking-[0.3em] text-indigo-400 light:text-indigo-600 font-bold mb-3 md:mb-5 ml-1 transition-colors duration-700"
                             />
 
-                            <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-4">
+                            <div class="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2 md:gap-4">
                                 {category.items.map((skill) => (
                                     <div
                                         class="group relative p-[1px] rounded-lg md:rounded-xl overflow-hidden transition-all duration-700 hover:scale-105"
@@ -213,29 +213,21 @@ enum Level {
 </style>
 
 <script>
-    // LÓGICA DE PARTÍCULAS SUTILES
     const container = document.getElementById("particles-container");
-    const particleCount = 40;
-
     if (container) {
-        // Limpiar para evitar duplicados en re-renders de desarrollo
         container.innerHTML = "";
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement("div");
-            particle.className =
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement("div");
+            p.className =
                 "absolute bg-white light:bg-gray-400 rounded-full transition-colors duration-700";
-
             const size = Math.random() * 2 + 1 + "px";
-            particle.style.width = size;
-            particle.style.height = size;
-
-            particle.style.top = Math.random() * 100 + "%";
-            particle.style.left = Math.random() * 100 + "%";
-
-            particle.style.opacity = (Math.random() * 0.5 + 0.2).toString();
-            particle.style.animation = `pulse ${Math.random() * 3 + 2}s infinite ease-in-out`;
-
-            container.appendChild(particle);
+            p.style.width = size;
+            p.style.height = size;
+            p.style.top = Math.random() * 100 + "%";
+            p.style.left = Math.random() * 100 + "%";
+            p.style.opacity = (Math.random() * 0.5 + 0.2).toString();
+            p.style.animation = `pulse ${Math.random() * 3 + 2}s infinite ease-in-out`;
+            container.appendChild(p);
         }
     }
 </script>
