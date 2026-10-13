@@ -13,7 +13,7 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
 
 <Base>
 <main
-    class="h-screen overflow-y-scroll snap-y snap-proximity md:snap-mandatory scroll-smooth bg-black text-white overscroll-contain"
+    class="h-screen h-dvh overflow-y-scroll snap-none scroll-smooth bg-black text-white overscroll-contain"
     id="scroll-root"
 >
         <TopActionsContainer />
@@ -78,7 +78,6 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
                 el.style.opacity = "0";
                 el.style.transform = "translateY(5px)";
 
-                // Guardamos el timeout del fade-out para poder cancelarlo también
                 const mainTimeout = setTimeout(() => {
                     el.textContent = "";
 
@@ -99,11 +98,9 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
                         if (i < newText.length) {
                             el.textContent += newText.charAt(i);
                             i++;
-                            // Guardamos el ID del siguiente carácter
                             const nextStepTimeout = setTimeout(type, speed);
                             el.dataset.timeoutId = nextStepTimeout.toString();
                         } else {
-                            // Limpiamos al terminar
                             el.dataset.timeoutId = "";
                         }
                     }
@@ -123,8 +120,7 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
             updateTexts(e.detail.lang, true);
         });
 
-        // --- 2. Animaciones de Aparición General (Intro/Skills/Exp) ---
-        // (Tu código del IntersectionObserver se mantiene igual...)
+        // --- Animaciones de Aparición General (Intro/Skills/Exp) ---
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -143,8 +139,7 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
             .querySelectorAll("[data-animate]")
             .forEach((el) => observer.observe(el));
 
-        // --- 3. Parallax y Navegación ---
-        // (Tu código de Parallax y URL Observer se mantiene igual...)
+        // --- Parallax y Navegación ---
         const root = document.getElementById("scroll-root");
         const parallaxItems = document.querySelectorAll("[data-parallax]");
         if (root) {
@@ -155,6 +150,233 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
                     el.style.transform = `translateY(${scrollTop * speed}px)`;
                 });
             });
+        }
+
+        // =====================================================
+        // Scroll por secciones: rueda + teclado + táctil
+        // 1 gesto = 1 sección (instantáneo) + cooldown
+        // =====================================================
+        const COOLDOWN = 500; // ms entre saltos
+        const WHEEL_MIN_DELTA = 4; // ignora ruido mínimo del trackpad
+        const SWIPE_MIN = 50; // px mínimos para considerar un swipe
+        const EDGE_TOL = 2; // tolerancia de píxeles por redondeos
+
+        let lockedUntil = 0;
+
+        if (root) {
+            const getSections = () =>
+                Array.from(root.querySelectorAll<HTMLElement>("section[id]"));
+
+            const sectionTop = (el: HTMLElement) =>
+                el.getBoundingClientRect().top -
+                root.getBoundingClientRect().top +
+                root.scrollTop;
+
+            // Sección que contiene el borde superior del viewport
+            const getCurrentIndex = (sections: HTMLElement[]) => {
+                const atEnd =
+                    root.scrollTop + root.clientHeight >=
+                    root.scrollHeight - EDGE_TOL;
+                if (atEnd) return sections.length - 1;
+
+                let idx = 0;
+                sections.forEach((s, i) => {
+                    if (sectionTop(s) <= root.scrollTop + EDGE_TOL) idx = i;
+                });
+                return idx;
+            };
+
+            // ¿La sección actual es más alta que la pantalla y aún queda
+            // contenido por ver en esa dirección? (típico en móvil)
+            const hasRoom = (dir: number) => {
+                const sections = getSections();
+                if (!sections.length) return false;
+                const s = sections[getCurrentIndex(sections)];
+                const top = sectionTop(s);
+                const bottom = top + s.offsetHeight;
+                if (dir > 0) {
+                    return bottom - (root.scrollTop + root.clientHeight) > EDGE_TOL;
+                }
+                return root.scrollTop - top > EDGE_TOL;
+            };
+
+            // ¿Hay un hijo con scroll vertical propio que aún puede moverse?
+            const canScrollInside = (target: EventTarget | null, dir: number) => {
+                let el = target as HTMLElement | null;
+                while (el && el !== root) {
+                    if (el.nodeType === 1) {
+                        const oy = getComputedStyle(el).overflowY;
+                        if (
+                            (oy === "auto" || oy === "scroll") &&
+                            el.scrollHeight > el.clientHeight
+                        ) {
+                            const atTop = el.scrollTop <= 0;
+                            const atBottom =
+                                el.scrollTop + el.clientHeight >=
+                                el.scrollHeight - 1;
+                            if ((dir < 0 && !atTop) || (dir > 0 && !atBottom)) {
+                                return true;
+                            }
+                        }
+                    }
+                    el = el.parentElement;
+                }
+                return false;
+            };
+
+            const jumpTo = (index: number) => {
+                const now = performance.now();
+                if (now < lockedUntil) return;
+
+                const sections = getSections();
+                const clamped = Math.min(sections.length - 1, Math.max(0, index));
+                const target = sections[clamped];
+                if (!target) return;
+
+                if (Math.abs(sectionTop(target) - root.scrollTop) <= EDGE_TOL) {
+                    return;
+                }
+
+                lockedUntil = now + COOLDOWN;
+                root.scrollTo({ top: sectionTop(target), behavior: "instant" });
+            };
+
+            const go = (dir: number) => {
+                const sections = getSections();
+                jumpTo(getCurrentIndex(sections) + dir);
+            };
+
+            // --- Rueda / trackpad ---
+            root.addEventListener(
+                "wheel",
+                (e: WheelEvent) => {
+                    if (e.ctrlKey) return; // zoom del navegador
+                    if (Math.abs(e.deltaY) < WHEEL_MIN_DELTA) return;
+
+                    const dir = e.deltaY > 0 ? 1 : -1;
+                    if (canScrollInside(e.target, dir)) return;
+                    if (hasRoom(dir)) return; // sección alta: scroll nativo
+
+                    e.preventDefault();
+                    go(dir);
+                },
+                { passive: false },
+            );
+
+            // --- Teclado ---
+            window.addEventListener("keydown", (e: KeyboardEvent) => {
+                if (e.defaultPrevented) return;
+                if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+                const t = e.target as HTMLElement | null;
+                if (
+                    t &&
+                    (t.isContentEditable ||
+                        ["INPUT", "TEXTAREA", "SELECT"].includes(t.tagName))
+                ) {
+                    return;
+                }
+
+                let dir = 0;
+                let absolute: "first" | "last" | null = null;
+
+                switch (e.key) {
+                    case "ArrowDown":
+                    case "PageDown":
+                        dir = 1;
+                        break;
+                    case "ArrowUp":
+                    case "PageUp":
+                        dir = -1;
+                        break;
+                    case " ":
+                    case "Spacebar":
+                        // Espacio sobre botones/enlaces los activa: no tocar
+                        if (t?.closest("button, a, summary")) return;
+                        dir = e.shiftKey ? -1 : 1;
+                        break;
+                    case "Home":
+                        absolute = "first";
+                        break;
+                    case "End":
+                        absolute = "last";
+                        break;
+                    default:
+                        return;
+                }
+
+                if (absolute) {
+                    e.preventDefault();
+                    const sections = getSections();
+                    jumpTo(absolute === "first" ? 0 : sections.length - 1);
+                    return;
+                }
+
+                if (canScrollInside(t, dir)) return;
+                if (hasRoom(dir)) return; // deja el scroll nativo
+
+                e.preventDefault();
+                go(dir);
+            });
+
+            // --- Táctil (móvil / tablet) ---
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchTarget: EventTarget | null = null;
+            let touchNative = false; // el gesto lo resolvió el navegador
+
+            root.addEventListener(
+                "touchstart",
+                (e: TouchEvent) => {
+                    const t = e.touches[0];
+                    touchStartX = t.clientX;
+                    touchStartY = t.clientY;
+                    touchTarget = e.target;
+                    touchNative = false;
+                },
+                { passive: true },
+            );
+
+            root.addEventListener(
+                "touchmove",
+                (e: TouchEvent) => {
+                    const t = e.touches[0];
+                    const dx = touchStartX - t.clientX;
+                    const dy = touchStartY - t.clientY;
+
+                    // Solo gestos mayormente verticales
+                    if (Math.abs(dy) < Math.abs(dx)) return;
+                    if (Math.abs(dy) < 4) return;
+
+                    const dir = dy > 0 ? 1 : -1;
+
+                    if (canScrollInside(touchTarget, dir) || hasRoom(dir)) {
+                        touchNative = true; // deja que el navegador haga scroll
+                        return;
+                    }
+
+                    // Evita el scroll nativo/rebote: el salto se hace en touchend
+                    if (e.cancelable) e.preventDefault();
+                },
+                { passive: false },
+            );
+
+            root.addEventListener(
+                "touchend",
+                (e: TouchEvent) => {
+                    if (touchNative) return;
+
+                    const t = e.changedTouches[0];
+                    const dx = touchStartX - t.clientX;
+                    const dy = touchStartY - t.clientY;
+
+                    if (Math.abs(dy) < SWIPE_MIN) return;
+                    if (Math.abs(dy) < Math.abs(dx) * 1.2) return;
+
+                    go(dy > 0 ? 1 : -1);
+                },
+                { passive: true },
+            );
         }
 
         // 1. Manejar el scroll automático al cargar
@@ -186,7 +408,7 @@ import TopActionsContainer from "../components/TopActionsContainer.astro";
         // Scroll instantáneo al hash inicial
         if (window.location.hash) {
             document
-                .querySelector('section[id="' + window.location.hash + '"]')
+                .querySelector(window.location.hash)
                 ?.scrollIntoView({ behavior: "instant" });
         }
     </script>
