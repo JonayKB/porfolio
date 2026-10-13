@@ -101,7 +101,10 @@ export default {
   project3_title: "Cuidado",
   project3_subtitle: "Plantas",
   project3_description: "Red social en Laravel para compartir cuidados de plantas.",
-  project3_button: "Ver Repositorio"
+  project3_button: "Ver Repositorio",
+
+  project4_description: "Aplicación de escritorio para gestionar y cronometrar rallies de slot: terminales ESP32 con NFC e infrarrojos y clasificación en directo.",
+project4_button: "Ver Web",
 
 
 }
