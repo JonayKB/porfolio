@@ -103,7 +103,7 @@ export default {
   project3_description: "Red social en Laravel para compartir cuidados de plantas.",
   project3_button: "Ver Repositorio",
 
-  project4_description: "Aplicación de escritorio para gestionar y cronometrar rallies de slot: terminales ESP32 con NFC e infrarrojos y clasificación en directo.",
+project4_description: "Monitoreo automático de tus rallies de slot en tiempo real: gestiona coches, pilotos y tiempos, y consulta la clasificación al instante, todo en una sola aplicación.",
 project4_button: "Ver Web",
 
 
