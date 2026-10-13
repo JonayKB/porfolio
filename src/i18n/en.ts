@@ -106,5 +106,8 @@ export default {
   project3_description: "Social network in Laravel for sharing plant care.",
   project3_button: "View Repository",
 
+  project4_description: "Desktop app to manage and time slot car rallies: ESP32 terminals with NFC and infrared sensors, plus a live scoreboard.",
+project4_button: "Visit Website",
+
 
 }
