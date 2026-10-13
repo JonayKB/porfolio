@@ -106,7 +106,7 @@ export default {
   project3_description: "Social network in Laravel for sharing plant care.",
   project3_button: "View Repository",
 
-  project4_description: "Desktop app to manage and time slot car rallies: ESP32 terminals with NFC and infrared sensors, plus a live scoreboard.",
+project4_description: "Automatic real-time monitoring for your slot car rallies: manage cars, drivers and lap times, and see the standings instantly, all in one app.",
 project4_button: "Visit Website",
 
 
