@@ -6,6 +6,20 @@
     <div class="absolute inset-0 z-0 pointer-events-none">
         <div
             class="absolute inset-0 transition-all duration-1000 opacity-100 scale-100 project-bg"
+            id="bg-project-5"
+        >
+            <img
+                alt="KB Slot Engine Background"
+                src="assets/img/project-5-bg.webp"
+                class="w-full h-full object-cover"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-[#2a0a0e]/90 via-black/50 to-black/80"
+            >
+            </div>
+        </div>
+        <div
+            class="absolute inset-0 transition-all duration-1000 opacity-0 scale-110 project-bg"
             id="bg-project-1"
         >
             <img
@@ -15,6 +29,20 @@
             />
             <div
                 class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/80"
+            >
+            </div>
+        </div>
+        <div
+            class="absolute inset-0 transition-all duration-1000 opacity-0 scale-110 project-bg"
+            id="bg-project-6"
+        >
+            <img
+                alt="Project 6 Background"
+                src="assets/img/project-6-bg.webp"
+                class="w-full h-full object-cover"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-br from-emerald-950/80 via-black/50 to-black/80"
             >
             </div>
         </div>
@@ -60,20 +88,6 @@
             >
             </div>
         </div>
-                <div
-            class="absolute inset-0 transition-all duration-1000 opacity-0 scale-110 project-bg"
-            id="bg-project-5"
-        >
-            <img
-                alt="KB Slot Engine Background"
-                src="assets/img/project-5-bg.webp"
-                class="w-full h-full object-cover"
-            />
-            <div
-                class="absolute inset-0 bg-gradient-to-br from-[#2a0a0e]/90 via-black/50 to-black/80"
-            >
-            </div>
-        </div>
     </div>
 
     <div class="absolute left-12 top-1/2 -translate-y-1/2 z-20 hidden md:block">
@@ -94,7 +108,7 @@
            md:bottom-auto md:top-1/2 md:right-12 md:-translate-y-1/2 md:left-auto md:translate-x-0 md:flex-col md:gap-6"
     >
         {
-            [0, 1, 2, 3, 4].map((i) => (
+            [0, 1, 2, 3, 4, 5].map((i) => (
                 <button
                     aria-label={`Go to Project ${i}`}
                     class="group flex items-center gap-4 transition-all outline-none project-dot-btn"
@@ -118,6 +132,44 @@
         id="horizontal-track"
         class="relative z-10 h-full flex flex-nowrap overflow-x-auto snap-x snap-mandatory no-scrollbar scroll-smooth"
     >
+        <article
+            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
+        >
+            <div
+                class="max-w-4xl text-center opacity-0 translate-y-10 md:translate-y-20 transition-all duration-1000"
+                data-animate-project
+            >
+                <h3
+                    class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
+                >
+                    KB <br />
+                    <span
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-[#ff4d5e] to-[#E8192C]"
+                        >Slot Engine</span
+                    >
+                </h3>
+                <p
+                    class="text-base md:text-2xl text-gray-400 max-w-[280px] sm:max-w-md md:max-w-xl mx-auto font-light leading-relaxed px-2 md:px-0"
+                    data-i18n="project4_description"
+                >
+                    Monitoreo automático de tus rallies de slot en tiempo real:
+                    gestiona coches, pilotos y tiempos, y consulta la
+                    clasificación al instante, todo en una sola aplicación.
+                </p>
+                <div class="mt-8 md:mt-12">
+                    <a
+                        href="https://slot-engine.jonaykb.com"
+                        target="_blank"
+                        rel="noopener"
+                        data-i18n="project4_button"
+                        class="px-8 py-3 md:px-10 md:py-4 border border-[#E8192C]/40 bg-[#E8192C]/10 backdrop-blur-md rounded-full hover:bg-[#E8192C] transition-all duration-500 text-xs md:text-sm uppercase tracking-widest font-bold inline-block"
+                    >
+                        Ver Web
+                    </a>
+                </div>
+            </div>
+        </article>
+
         <article
             class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
         >
@@ -153,6 +205,44 @@
                 </div>
             </div>
         </article>
+
+        <article
+            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
+        >
+            <div
+                class="max-w-4xl text-center opacity-0 translate-y-10 md:translate-y-20 transition-all duration-1000"
+                data-animate-project
+            >
+                <h3
+                    class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
+                >
+                    KB <br />
+                    <span
+                        class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-green-600"
+                        >MC Launcher</span
+                    >
+                </h3>
+                <p
+                    class="text-base md:text-2xl text-gray-400 max-w-[280px] sm:max-w-md md:max-w-xl mx-auto font-light leading-relaxed px-2 md:px-0"
+                    data-i18n="project5_description"
+                >
+                    Launcher de Minecraft con integración de cuenta Microsoft
+                    e instalación automática de modpacks.
+                </p>
+                <div class="mt-8 md:mt-12">
+                    <a
+                        href="https://kb-launcher.jonaykb.com"
+                        target="_blank"
+                        rel="noopener"
+                        data-i18n="project5_button"
+                        class="px-8 py-3 md:px-10 md:py-4 border border-emerald-500/40 bg-emerald-500/10 backdrop-blur-md rounded-full hover:bg-emerald-500 transition-all duration-500 text-xs md:text-sm uppercase tracking-widest font-bold inline-block"
+                    >
+                        Ver Web
+                    </a>
+                </div>
+            </div>
+        </article>
+
         <article
             class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
         >
@@ -253,43 +343,6 @@
                         class="px-8 py-3 md:px-10 md:py-4 border border-indigo-500/30 bg-indigo-500/10 backdrop-blur-md rounded-full hover:bg-indigo-500 transition-all duration-500 text-xs md:text-sm uppercase tracking-widest font-bold inline-block"
                     >
                         Ver Repositorio
-                    </a>
-                </div>
-            </div>
-        </article>
-                <article
-            class="snap-center min-w-full h-full flex-shrink-0 flex items-center justify-center px-6 md:px-10"
-        >
-            <div
-                class="max-w-4xl text-center opacity-0 translate-y-10 md:translate-y-20 transition-all duration-1000"
-                data-animate-project
-            >
-                <h3
-                    class="text-5xl md:text-9xl font-black text-white mb-6 md:mb-8 tracking-tighter uppercase leading-[0.9] md:leading-[0.8]"
-                >
-                    KB <br />
-                    <span
-                        class="bg-clip-text text-transparent bg-gradient-to-r from-[#ff4d5e] to-[#E8192C]"
-                        >Slot Engine</span
-                    >
-                </h3>
-                <p
-                    class="text-base md:text-2xl text-gray-400 max-w-[280px] sm:max-w-md md:max-w-xl mx-auto font-light leading-relaxed px-2 md:px-0"
-                    data-i18n="project4_description"
-                >
-                    Monitoreo automático de tus rallies de slot en tiempo real:
-                    gestiona coches, pilotos y tiempos, y consulta la
-                    clasificación al instante, todo en una sola aplicación.
-                </p>
-                <div class="mt-8 md:mt-12">
-                    <a
-                        href="https://slot-engine.jonaykb.com"
-                        target="_blank"
-                        rel="noopener"
-                        data-i18n="project4_button"
-                        class="px-8 py-3 md:px-10 md:py-4 border border-[#E8192C]/40 bg-[#E8192C]/10 backdrop-blur-md rounded-full hover:bg-[#E8192C] transition-all duration-500 text-xs md:text-sm uppercase tracking-widest font-bold inline-block"
-                    >
-                        Ver Web
                     </a>
                 </div>
             </div>

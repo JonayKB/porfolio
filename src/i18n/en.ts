@@ -15,18 +15,23 @@ export default {
   exp_item5: "Full deployment of static and dynamic applications.",
 
   exp_company_2: "Dst Factory",
-  exp_role_2: "Full Stack Developer",
+  exp_role_2: "Full Stack Developer (Internship)",
   exp_date_2: "18/02/2026 - 18/06/2026",
   exp_item2_1: "Spring Boot backend with Flyway migrations, OAuth2 + JWT security, Redis caching, containerisation and unit testing.",
   exp_item2_2: "AngularJS frontend with route guards, routing and Spring Boot REST API integration; Docker, unit testing and Cypress e2e.",
   exp_item2_3: "Raspberry Pi setup with QR reader and status display circuit using MicroPython and Arduino.",
   exp_item2_4: "Internship contract in a hybrid environment, collaborating across the full development lifecycle with a multidisciplinary team.",
+  exp_role_3: "Full Stack Developer",
+  exp_date_3: "18/06/2026 - Present",
+  exp_item3_4: "Hybrid work environment, collaborating across the full development lifecycle with a multidisciplinary team.",
+  exp_item3_5: "Occasional use of AI as support for design and documentation.",
 
   // --- Skills
   skills: "Skills",
   skills_frontend: "Frontend",
   skills_backend: "Backend & DB",
   skills_devops: "DevOps & Tools",
+  skills_embedded: "Embedded & Desktop",
   master: "Master",
   expert: "Expert",
   advanced: "Advanced",
@@ -105,6 +110,8 @@ export default {
   project3_subtitle: "Plantas",
   project3_description: "Social network in Laravel for sharing plant care.",
   project3_button: "View Repository",
+  project5_description: "Custom Minecraft launcher with Microsoft account integration and automatic modpack installation.",
+  project5_button: "Visit Website",
 
 project4_description: "Automatic real-time monitoring for your slot car rallies: manage cars, drivers and lap times, and see the standings instantly, all in one app.",
 project4_button: "Visit Website",
