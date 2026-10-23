@@ -1,6 +1,5 @@
 ---
-const WAKA_API_KEY = import.meta.env.WAKA_API_KEY;
-const encodedKey = btoa(WAKA_API_KEY);
+const WAKA_TOKEN = import.meta.env.WAKA_TOKEN;
 
 type WakaTimeStats = {
   languages: Array<{
@@ -16,14 +15,24 @@ let stats7Days: WakaTimeStats | null = null;
 let statsAllTime: WakaTimeStats | null = null;
 
 try {
+  if (!WAKA_TOKEN) {
+    throw new Error("Falta la variable de entorno WAKA_TOKEN");
+  }
+
+  const headers = { Authorization: `Bearer ${WAKA_TOKEN}` };
+
   const [res7, resAll] = await Promise.all([
     fetch("https://wakatime.com/api/v1/users/current/stats/last_7_days", {
-      headers: { Authorization: `Basic ${encodedKey}` },
+      headers,
     }),
     fetch("https://wakatime.com/api/v1/users/current/stats/all_time", {
-      headers: { Authorization: `Basic ${encodedKey}` },
+      headers,
     }),
   ]);
+
+  if (!res7.ok || !resAll.ok) {
+    throw new Error(`WakaTime error: ${res7.status} / ${resAll.status}`);
+  }
 
   const [data7, dataAll] = await Promise.all([res7.json(), resAll.json()]);
   stats7Days = data7.data;
